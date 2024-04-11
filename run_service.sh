@@ -3,9 +3,9 @@
 REPO_PATH=$PWD
 
 # Remove previous service build
-if test -d demo; then
+if test -d demo_service; then
   echo "Removing previous service build"
-  sudo rm -r demo
+  sudo rm -r demo_service
 fi
 
 # Push packages and fetch service
@@ -13,7 +13,7 @@ make clean
 
 autonomy push-all
 
-autonomy fetch --local --service author/demo && cd demo
+autonomy fetch --local --service author/demo_service && cd demo_service
 
 # Build the image
 autonomy init --reset --author author --remote --ipfs --ipfs-node "/dns/registry.autonolas.tech/tcp/443/https"

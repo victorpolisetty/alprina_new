@@ -2,8 +2,8 @@
     "dev": {
         "skill/author/demo_abci/0.1.0": "bafybeiazel2he2wt4rpc5ikpucmy5ji5bz43dkek7nwdh7u6j6nbja3xkm",
         "skill/author/demo_chained_abci/0.1.0": "bafybeidarbdbscwca53nwsj4n4xqj4dshgyly6vwale3zeyngdszvv44qi",
-        "agent/author/demo/0.1.0": "bafybeiewsrddbi23iyoulffrkbfnogme534zx7vriqdjd4xvutzz4tysuy",
-        "service/author/demo/0.1.0": "bafybeia44252swyeokzgsfghoolonq4cp5tvr7a4l4o56dede7c2b7ynx4"
+        "agent/author/demo_agent/0.1.0": "bafybeib4dag2y5ket54cetzn472oox6x5fkk7v5zahtli5x6mgqiwltvqu",
+        "service/author/demo_service/0.1.0": "bafybeicg6hmqzkhxagegux5lqaay7xi6g6epwdeeu3kfc4pwsvtnmjpcoi"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi",

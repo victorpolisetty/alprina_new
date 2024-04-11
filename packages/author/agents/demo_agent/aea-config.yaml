@@ -1,11 +1,11 @@
-agent_name: demo
+agent_name: demo_agent
 author: author
 version: 0.1.0
 license: Apache-2.0
 description: A demo agent.
 aea_version: '>=1.19.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeihddftqs2u2pd2zdqhutcripirnwiez5fwedi55lkew3eg3wlec64
+  __init__.py: bafybeidhbmjkqmabkap33fzf4y2nay5ik5jstqunyh4llelrskwzrrxb2e
 fingerprint_ignore_patterns: []
 connections:
 - valory/abci:0.1.0:bafybeiclexb6cnsog5yjz2qtvqyfnf7x5m7tpp56hblhk3pbocbvgjzhze
