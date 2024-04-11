@@ -95,6 +95,13 @@ all-linters:
 	tox -e pylint
 	tox -e mypy
 
+.PHONY: fix-abci-app-specs
+fix-abci-app-specs:
+	export PYTHONPATH=${PYTHONPATH}:${PWD}
+	autonomy analyse fsm-specs --update --app-class DemoAbciApp --package packages/author/skills/demo_abci/ || (echo "Failed to check demo_abci abci consistency" && exit 1)
+	autonomy analyse fsm-specs --update --app-class DemoChainedSkillAbciApp --package packages/author/skills/demo_chained_abci/ || (echo "Failed to check demo_chained_abci abci consistency" && exit 1)
+
+
 .PHONY: tm
 tm:
 	rm -r ~/.tendermint

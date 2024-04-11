@@ -34,10 +34,9 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.valory.skills.transaction_settlement_abci.rounds import TX_HASH_LENGTH
 
 
-class DemoBaseBehaviour(BaseBehaviour, ABC):
+class DemoBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
     """Base behaviour for the demo_abci skill."""
 
     @property
@@ -56,7 +55,7 @@ class DemoBaseBehaviour(BaseBehaviour, ABC):
         return cast(SharedState, self.context.state)
 
 
-class DemoBehaviour(DemoBaseBehaviour):
+class DemoBehaviour(DemoBaseBehaviour):  # pylint: disable=too-many-ancestors
     """DemoBehaviour"""
 
     matching_round: Type[AbstractRound] = DemoRound
@@ -82,6 +81,6 @@ class DemoRoundBehaviour(AbstractRoundBehaviour):
 
     initial_behaviour_cls = DemoBehaviour
     abci_app_cls = DemoAbciApp  # type: ignore
-    behaviours: Set[Type[BaseBehaviour]] = [
+    behaviours: Set[Type[BaseBehaviour]] = [  # type: ignore
         DemoBehaviour,
     ]

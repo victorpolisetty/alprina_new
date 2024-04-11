@@ -46,7 +46,7 @@ MULTIPLIER = 10
 class SharedState(BaseSharedState):
     """Keep the current shared state of the skill."""
 
-    abci_app_cls = DemoChainedSkillAbciApp
+    abci_app_cls = DemoChainedSkillAbciApp  # type: ignore
 
     def setup(self) -> None:
         """Set up."""
@@ -65,7 +65,7 @@ class SharedState(BaseSharedState):
         )
 
 
-class Params(
+class Params(  # pylint: disable=too-many-ancestors
     TerminationParams,
     DemoParams,
 ):

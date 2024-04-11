@@ -1,34 +1,17 @@
 alphabet_in:
-- DECISION_MAKING
 - DONE
-- MECH
 - NO_MAJORITY
 - ROUND_TIMEOUT
-- SETTLE
-default_start_state: DecisionMakingRound
+default_start_state: DemoRound
 final_states:
-- FinishedDecisionMakingMechRound
-- FinishedDecisionMakingResetRound
-- FinishedDecisionMakingSettleRound
-- FinishedPostTxDecisionMakingMechRound
+- FinishedDemoRound
 label: DemoAbciApp
 start_states:
-- DecisionMakingRound
-- PostTxDecisionMakingRound
+- DemoRound
 states:
-- DecisionMakingRound
-- FinishedDecisionMakingMechRound
-- FinishedDecisionMakingResetRound
-- FinishedDecisionMakingSettleRound
-- FinishedPostTxDecisionMakingMechRound
-- PostTxDecisionMakingRound
+- DemoRound
+- FinishedDemoRound
 transition_func:
-    (DecisionMakingRound, DONE): FinishedDecisionMakingResetRound
-    (DecisionMakingRound, MECH): FinishedDecisionMakingMechRound
-    (DecisionMakingRound, NO_MAJORITY): DecisionMakingRound
-    (DecisionMakingRound, ROUND_TIMEOUT): DecisionMakingRound
-    (DecisionMakingRound, SETTLE): FinishedDecisionMakingSettleRound
-    (PostTxDecisionMakingRound, DECISION_MAKING): DecisionMakingRound
-    (PostTxDecisionMakingRound, MECH): FinishedPostTxDecisionMakingMechRound
-    (PostTxDecisionMakingRound, NO_MAJORITY): PostTxDecisionMakingRound
-    (PostTxDecisionMakingRound, ROUND_TIMEOUT): PostTxDecisionMakingRound
+    (DemoRound, DONE): FinishedDemoRound
+    (DemoRound, NO_MAJORITY): DemoRound
+    (DemoRound, ROUND_TIMEOUT): DemoRound

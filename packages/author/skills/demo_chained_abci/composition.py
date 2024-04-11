@@ -22,7 +22,6 @@
 import packages.author.skills.demo_abci.rounds as DemoAbci
 import packages.valory.skills.registration_abci.rounds as RegistrationAbci
 import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
-import packages.valory.skills.transaction_settlement_abci.rounds as TxSettlementAbci
 from packages.valory.skills.abstract_round_abci.abci_app_chain import (
     AbciAppTransitionMapping,
     chain,
@@ -52,7 +51,6 @@ DemoChainedSkillAbciApp = chain(
     (
         RegistrationAbci.AgentRegistrationAbciApp,
         DemoAbci.DemoAbciApp,
-        TxSettlementAbci.TransactionSubmissionAbciApp,
         ResetAndPauseAbci.ResetPauseAbciApp,
     ),
     abci_app_transition_mapping,

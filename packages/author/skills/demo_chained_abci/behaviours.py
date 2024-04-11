@@ -21,12 +21,12 @@
 
 from typing import Set, Type
 
+from packages.author.skills.demo_abci.behaviours import DemoRoundBehaviour
+from packages.author.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.author.skills.demo_abci.behaviours import DemoRoundBehaviour
-from packages.author.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
 from packages.valory.skills.registration_abci.behaviours import (
     AgentRegistrationRoundBehaviour,
     RegistrationStartupBehaviour,
