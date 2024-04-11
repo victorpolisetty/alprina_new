@@ -10,7 +10,10 @@ packages/open_aea
 packages/valory
 leak_report
 /Pipfile.lock
-
 keys.json
-
 ethereum_private_key.txt
+demo
+!packages/author/agents/demo/
+!packages/author/services/demo/
+__pycache__/
+.env

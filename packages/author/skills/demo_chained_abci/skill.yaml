@@ -6,13 +6,13 @@ description: The chained abci for the demo skill.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeibitph3yu4pwz76z5bkqikizx6om4vgep4tno2bwlxingvrrtrv5a
-  behaviours.py: bafybeihflzjkueqmudcyvirggd3ecrx7mq2vrdigy6olcmtpk3v7igg6mu
-  composition.py: bafybeiaogkkwvlz2gx673ht545zf2nq35h44uaj6cxoa3rajhvejm6uzpq
+  __init__.py: bafybeiggbkry57ijcu63gkab6bouthtcavxnyn2xvdwadrjirlq7klbrqe
+  behaviours.py: bafybeifeojavc4jffxysy6vi36zbyfufsferjj4jd6qom5pzzurdwipdwi
+  composition.py: bafybeihoc5jn3ha4qmhg2qqggmsmmsbtfyj4lcr4veossyotx6x5dbqrmy
   dialogues.py: bafybeiakqfqcpg7yrxt4bsyernhy5p77tci4qhmgqqjqi3ttx7zk6sklca
-  fsm_specification.yaml: bafybeibgqjlvtcqllvqbauh7dm3xaudj5o4onuccxapl5lxrooae273dmy
-  handlers.py: bafybeifxz32ttiql5jvrroosgwycc6rgos4yhlz4offxug4khjk2327pv4
-  models.py: bafybeihicso42wvmm3hh2nkhnn5ld4atbtyrbvz3n5liddhkfojusroofq
+  fsm_specification.yaml: bafybeihvki35m5jsrbeqahwmjlnkfn7wzu3yasrr7am2dtjq25zcwfbyka
+  handlers.py: bafybeiekqhxy2cfr27ds4tw7btcd2fvl4eud2ohhqi7ura2vja7x557hpe
+  models.py: bafybeibl5c5lsbckq7f2iunbnbroi67rbbpo2dmpevlz546ds3hj42uofy
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -22,7 +22,7 @@ skills:
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
-- author/demo_abci:0.1.0:bafybeidqyex4bbnseqblg3xr644plabcvtigkk7cvvxasfb735td2doq7m
+- author/demo_abci:0.1.0:bafybeiazel2he2wt4rpc5ikpucmy5ji5bz43dkek7nwdh7u6j6nbja3xkm
 - valory/transaction_settlement_abci:0.1.0:bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq
 behaviours:
   main:
@@ -31,7 +31,7 @@ behaviours:
 handlers:
   abci:
     args: {}
-    class_name: ABCIRoundHandler
+    class_name: ABCIHandler
   contract_api:
     args: {}
     class_name: ContractApiHandler

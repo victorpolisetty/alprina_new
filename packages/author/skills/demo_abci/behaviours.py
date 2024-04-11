@@ -80,7 +80,7 @@ class DemoBehaviour(DemoBaseBehaviour):
 class DemoRoundBehaviour(AbstractRoundBehaviour):
     """DemoRoundBehaviour"""
 
-    initial_behaviour_cls = DecisionMakingBehaviour
+    initial_behaviour_cls = DemoBehaviour
     abci_app_cls = DemoAbciApp  # type: ignore
     behaviours: Set[Type[BaseBehaviour]] = [
         DemoBehaviour,

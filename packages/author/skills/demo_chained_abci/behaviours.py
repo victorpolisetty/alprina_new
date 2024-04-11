@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This package contains round behaviours of CeloTraderChainedSkillAbci."""
+"""This package contains round behaviours of DemoChainedSkillAbci."""
 
 from typing import Set, Type
 
@@ -25,8 +25,8 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.valory.skills.demo_abci.behaviours import DemoRoundBehaviour
-from packages.valory.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
+from packages.author.skills.demo_abci.behaviours import DemoRoundBehaviour
+from packages.author.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
 from packages.valory.skills.registration_abci.behaviours import (
     AgentRegistrationRoundBehaviour,
     RegistrationStartupBehaviour,

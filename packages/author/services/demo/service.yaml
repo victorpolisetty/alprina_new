@@ -5,9 +5,9 @@ description: A demo service.
 aea_version: '>=1.0.0, <2.0.0'
 license: Apache-2.0
 fingerprint:
-  README.md: bafybeibpx5bbmxyqhpxrm7l722ejprgv2xvmli65xvkstbonexlr5n3reu
+  README.md: bafybeicxq7czrb2v2mzpvytqc53eawd6kwe7vq2lh5kn63hhxrj3fqodne
 fingerprint_ignore_patterns: []
-agent: author/demo:0.1.0:bafybeiakm5u35oxj4fg3s5staw7zd27peqpmxfmedbfcu4u4c6f42dqbne
+agent: author/demo:0.1.0:bafybeiewsrddbi23iyoulffrkbfnogme534zx7vriqdjd4xvutzz4tysuy
 number_of_agents: 1
 deployment:
   agent:
@@ -96,7 +96,7 @@ config:
       poa_chain: ${ETHEREUM_LEDGER_IS_POA_CHAIN:bool:false}
       default_gas_price_strategy: ${ETHEREUM_LEDGER_PRICING:str:eip1559}
     gnosis:
-      address: ${CELO_LEDGER_RPC:str:http://host.docker.internal:8545}
+      address: ${GNOSIS_LEDGER_RPC:str:http://host.docker.internal:8545}
       chain_id: ${GNOSIS_LEDGER_CHAIN_ID:int:42220}
       poa_chain: ${GNOSIS_LEDGER_IS_POA_CHAIN:bool:true}
       default_gas_price_strategy: ${GNOSIS_LEDGER_PRICING:str:eip1559}

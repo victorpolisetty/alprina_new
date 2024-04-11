@@ -66,7 +66,7 @@ class SharedState(BaseSharedState):
 
 
 class Params(
-    DemoParams,
     TerminationParams,
+    DemoParams,
 ):
     """A model to represent params for multiple abci apps."""

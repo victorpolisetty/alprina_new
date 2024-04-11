@@ -1,5 +1,10 @@
 {
-    "dev": {},
+    "dev": {
+        "skill/author/demo_abci/0.1.0": "bafybeiazel2he2wt4rpc5ikpucmy5ji5bz43dkek7nwdh7u6j6nbja3xkm",
+        "skill/author/demo_chained_abci/0.1.0": "bafybeidarbdbscwca53nwsj4n4xqj4dshgyly6vwale3zeyngdszvv44qi",
+        "agent/author/demo/0.1.0": "bafybeiewsrddbi23iyoulffrkbfnogme534zx7vriqdjd4xvutzz4tysuy",
+        "service/author/demo/0.1.0": "bafybeia44252swyeokzgsfghoolonq4cp5tvr7a4l4o56dede7c2b7ynx4"
+    },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi",
         "protocol/valory/abci/0.1.0": "bafybeiaqmp7kocbfdboksayeqhkbrynvlfzsx4uy4x6nohywnmaig4an7u",

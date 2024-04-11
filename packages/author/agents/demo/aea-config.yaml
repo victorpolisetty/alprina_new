@@ -5,7 +5,7 @@ license: Apache-2.0
 description: A demo agent.
 aea_version: '>=1.19.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeiax7uzltout7552wnctin5dz5o7qtxchvsqsz7wxme6yhug7wj3de
+  __init__.py: bafybeihddftqs2u2pd2zdqhutcripirnwiez5fwedi55lkew3eg3wlec64
 fingerprint_ignore_patterns: []
 connections:
 - valory/abci:0.1.0:bafybeiclexb6cnsog5yjz2qtvqyfnf7x5m7tpp56hblhk3pbocbvgjzhze
@@ -17,7 +17,6 @@ connections:
 contracts:
 - valory/gnosis_safe:0.1.0:bafybeibq77mgzhyb23blf2eqmia3kc6io5karedfzhntvpcebeqdzrgyqa
 - valory/gnosis_safe_proxy_factory:0.1.0:bafybeib6podeifufgmawvicm3xyz3uaplbcrsptjzz4unpseh7qtcpar74
-- valory/mech:0.1.0:bafybeiejdn3rqqa7smbeiypajy63um7okteimvj6bsud3gezneycmdc6te
 - valory/multisend:0.1.0:bafybeig5byt5urg2d2bsecufxe5ql7f4mezg3mekfleeh32nmuusx66p4y
 - valory/service_registry:0.1.0:bafybeicbxmbzt757lbmyh6762lrkcrp3oeum6dk3z7pvosixasifsk6xlm
 protocols:
@@ -32,8 +31,8 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeihat4giyc4bz6zopvahcj4iw53356pbtwfn7p4d5yflwly2qhahum
 - valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
-- author/demo_abci:0.1.0:bafybeidqyex4bbnseqblg3xr644plabcvtigkk7cvvxasfb735td2doq7m
-- author/demo_chained_abci:0.1.0:bafybeihqd6g5ei335vjwpnoq2tcnev4n5snbtjzfpehzz6ppzny7gukm5m
+- author/demo_abci:0.1.0:bafybeiazel2he2wt4rpc5ikpucmy5ji5bz43dkek7nwdh7u6j6nbja3xkm
+- author/demo_chained_abci:0.1.0:bafybeidarbdbscwca53nwsj4n4xqj4dshgyly6vwale3zeyngdszvv44qi
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
@@ -75,7 +74,7 @@ default_connection: null
 public_id: valory/abci:0.1.0
 type: connection
 config:
-  target_skill_id: valory/demo_chained_abci:0.1.0
+  target_skill_id: author/demo_chained_abci:0.1.0
   host: ${str:localhost}
   port: ${int:26658}
   use_tendermint: ${bool:false}
@@ -145,7 +144,7 @@ models:
       termination_sleep: ${int:900}
       init_fallback_gas: 0
       keeper_allowed_retries: 3
-      reset_pause_duration: ${int:30}
+      reset_pause_duration: ${int:10}
       on_chain_service_id: ${int:null}
       reset_tendermint_after: ${int:2}
       retry_attempts: 400
@@ -156,7 +155,7 @@ models:
       service_id: demo
       service_registry_address: ${str:null}
       setup:
-        all_participants: ${list:["0x65E50F3B0D6AC6b0C45067ECf0a0f14C1F283d0b"]}
+        all_participants: ${list:["0x8D7102ce2d35a409535285252599c149FBeABB73"]}
         safe_contract_address: ${str:0x0000000000000000000000000000000000000000}
         consensus_threshold: ${int:null}
       share_tm_config_on_startup: ${bool:false}
