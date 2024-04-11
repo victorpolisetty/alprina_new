@@ -1,4 +1,4 @@
-name: demo
+name: demo_service
 author: author
 version: 0.1.0
 description: A demo service.
@@ -7,7 +7,7 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeicxq7czrb2v2mzpvytqc53eawd6kwe7vq2lh5kn63hhxrj3fqodne
 fingerprint_ignore_patterns: []
-agent: author/demo:0.1.0:bafybeiewsrddbi23iyoulffrkbfnogme534zx7vriqdjd4xvutzz4tysuy
+agent: author/demo_agent:0.1.0:bafybeib4dag2y5ket54cetzn472oox6x5fkk7v5zahtli5x6mgqiwltvqu
 number_of_agents: 1
 deployment:
   agent:

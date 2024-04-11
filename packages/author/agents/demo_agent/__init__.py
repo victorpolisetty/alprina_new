@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------------
 
-"""Package for valory/demo agent."""
+"""Package for author/demo_agent agent."""
 from pathlib import Path
 
 
