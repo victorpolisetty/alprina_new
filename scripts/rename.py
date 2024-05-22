@@ -1,5 +1,6 @@
-from pathlib import Path
 import shutil
+from pathlib import Path
+
 
 AUTHOR = "valory"
 SKILL_NAME_SNAKE_CASE = "learning"
@@ -37,7 +38,7 @@ WORDS = [
     "DemoChainedAbciApp",
     "demo.",
     "DemoEvent",
-    "demo_tm_0"
+    "demo_tm_0",
 ]
 
 
@@ -50,7 +51,6 @@ def replace(word):
 
 
 def process_file(file_path):
-
     print(f"Processing {file_path}")
 
     with open(file_path, "r", encoding="utf-8") as file:
@@ -69,9 +69,7 @@ def process_file(file_path):
         file.write(data)
 
 
-
 if __name__ == "__main__":
-
     for file_path in PACKAGES_DIR.rglob("*"):
         if not file_path.is_file():
             continue
@@ -95,23 +93,31 @@ if __name__ == "__main__":
 
         process_file(file_path)
 
-    for file_path in [".gitignore", ".gitleaksignore", "Makefile", "README.md", "run_agent.sh", "run_service.sh", "packages/packages.json"]:
+    for file_path in [
+        ".gitignore",
+        ".gitleaksignore",
+        "Makefile",
+        "README.md",
+        "run_agent.sh",
+        "run_service.sh",
+        "packages/packages.json",
+    ]:
         process_file(file_path)
 
     shutil.move(
         Path("packages", "author", "agents", "demo_agent"),
-        Path("packages", AUTHOR, "agents", f"{SKILL_NAME_SNAKE_CASE}_agent")
+        Path("packages", AUTHOR, "agents", f"{SKILL_NAME_SNAKE_CASE}_agent"),
     )
     shutil.move(
         Path("packages", "author", "services", "demo_service"),
-        Path("packages", AUTHOR, "services", f"{SKILL_NAME_SNAKE_CASE}_service")
+        Path("packages", AUTHOR, "services", f"{SKILL_NAME_SNAKE_CASE}_service"),
     )
     shutil.move(
         Path("packages", "author", "skills", "demo_abci"),
-        Path("packages", AUTHOR, "skills", f"{SKILL_NAME_SNAKE_CASE}_abci")
+        Path("packages", AUTHOR, "skills", f"{SKILL_NAME_SNAKE_CASE}_abci"),
     )
     shutil.move(
         Path("packages", "author", "skills", "demo_chained_abci"),
-        Path("packages", AUTHOR, "skills", f"{SKILL_NAME_SNAKE_CASE}_chained_abci")
+        Path("packages", AUTHOR, "skills", f"{SKILL_NAME_SNAKE_CASE}_chained_abci"),
     )
     shutil.rmtree(Path("packages", "author"))
