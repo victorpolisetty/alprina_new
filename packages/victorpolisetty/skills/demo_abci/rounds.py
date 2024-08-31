@@ -22,7 +22,7 @@
 from enum import Enum
 from typing import Dict, FrozenSet, Optional, Set
 
-from packages.author.skills.demo_abci.payloads import DemoPayload
+from packages.victorpolisetty.skills.demo_abci.payloads import DemoPayload
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
     AbciAppTransitionFunction,

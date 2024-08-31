@@ -19,10 +19,10 @@
 
 """This module contains the shared state for the abci skill of DemoChainedSkillAbciApp."""
 
-from packages.author.skills.demo_abci.models import Params as DemoParams
-from packages.author.skills.demo_abci.models import SharedState as BaseSharedState
-from packages.author.skills.demo_abci.rounds import Event as DemoEvent
-from packages.author.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
+from packages.victorpolisetty.skills.demo_abci.models import Params as DemoParams
+from packages.victorpolisetty.skills.demo_abci.models import SharedState as BaseSharedState
+from packages.victorpolisetty.skills.demo_abci.rounds import Event as DemoEvent
+from packages.victorpolisetty.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
 from packages.valory.skills.abstract_round_abci.models import (
     BenchmarkTool as BaseBenchmarkTool,
 )

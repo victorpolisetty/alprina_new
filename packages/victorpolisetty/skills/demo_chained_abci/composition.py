@@ -19,7 +19,7 @@
 
 """This package contains round behaviours of DemoChainedSkillAbciApp."""
 
-import packages.author.skills.demo_abci.rounds as DemoAbci
+import packages.victorpolisetty.skills.demo_abci.rounds as DemoAbci
 import packages.valory.skills.registration_abci.rounds as RegistrationAbci
 import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
 from packages.valory.skills.abstract_round_abci.abci_app_chain import (
