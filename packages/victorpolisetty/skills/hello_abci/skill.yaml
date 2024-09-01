@@ -6,7 +6,7 @@ description: A hello skill.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeic7j5uouzatm6jcd5izcdgucm4yppu76s6iuczke6rzzhwbwbvgue
+  __init__.py: bafybeieshkqpzg7glgjazq2hwgulkmcfgm2vevgucn7oz2nflawpm4gaeq
   behaviours.py: bafybeibatiikc2pcvqsalkwblavev55fxcwllppx3o7n6rg43fn5ytfi2y
   dialogues.py: bafybeigtvhdpeivvby66vilba7oatv7sxvyi2xupmhyfjtpdcwnqitm72i
   fsm_specification.yaml: bafybeig2cna4tkkyol5bpl5w4oxy5cvyapxkkt5d3n4myptjclo7tx54ve
