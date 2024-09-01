@@ -19,7 +19,7 @@
 
 """This module contains the shared state for the abci skill of DemoAbciApp."""
 
-from packages.victorpolisetty.skills.demo_abci.rounds import DemoAbciApp
+from packages.author.skills.demo_abci.rounds import DemoAbciApp
 from packages.valory.skills.abstract_round_abci.models import BaseParams
 from packages.valory.skills.abstract_round_abci.models import (
     BenchmarkTool as BaseBenchmarkTool,

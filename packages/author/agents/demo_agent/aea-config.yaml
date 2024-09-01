@@ -155,7 +155,7 @@ models:
       service_id: demo
       service_registry_address: ${str:null}
       setup:
-        all_participants: ${list:["0x8D7102ce2d35a409535285252599c149FBeABB73"]}
+        all_participants: ${list:["0x5a3151e7E265445d355697419DCEAfaE6dc67048"]}
         safe_contract_address: ${str:0x0000000000000000000000000000000000000000}
         consensus_threshold: ${int:null}
       share_tm_config_on_startup: ${bool:false}

@@ -22,9 +22,9 @@
 from abc import ABC
 from typing import Generator, Set, Type, cast
 
-from packages.victorpolisetty.skills.demo_abci.models import Params, SharedState
-from packages.victorpolisetty.skills.demo_abci.payloads import DemoPayload
-from packages.victorpolisetty.skills.demo_abci.rounds import (
+from packages.author.skills.demo_abci.models import Params, SharedState
+from packages.author.skills.demo_abci.payloads import DemoPayload
+from packages.author.skills.demo_abci.rounds import (
     DemoAbciApp,
     DemoRound,
     SynchronizedData,
