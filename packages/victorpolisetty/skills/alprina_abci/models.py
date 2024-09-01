@@ -17,12 +17,12 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the shared state for the abci skill of DemoChainedSkillAbciApp."""
+"""This module contains the shared state for the abci skill of AlprinaSkillAbciApp."""
 
-from packages.author.skills.demo_abci.models import Params as DemoParams
-from packages.author.skills.demo_abci.models import SharedState as BaseSharedState
-from packages.author.skills.demo_abci.rounds import Event as DemoEvent
-from packages.author.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
+from packages.victorpolisetty.skills.hello_abci.models import Params as HelloParams
+from packages.victorpolisetty.skills.hello_abci.models import SharedState as BaseSharedState
+from packages.victorpolisetty.skills.hello_abci.rounds import Event as HelloEvent
+from packages.victorpolisetty.skills.alprina_abci.composition import AlprinaSkillAbciApp
 from packages.valory.skills.abstract_round_abci.models import (
     BenchmarkTool as BaseBenchmarkTool,
 )
@@ -46,27 +46,27 @@ MULTIPLIER = 10
 class SharedState(BaseSharedState):
     """Keep the current shared state of the skill."""
 
-    abci_app_cls = DemoChainedSkillAbciApp  # type: ignore
+    abci_app_cls = AlprinaSkillAbciApp  # type: ignore
 
     def setup(self) -> None:
         """Set up."""
         super().setup()
 
-        DemoChainedSkillAbciApp.event_to_timeout[
+        AlprinaSkillAbciApp.event_to_timeout[
             ResetPauseEvent.ROUND_TIMEOUT
         ] = self.context.params.round_timeout_seconds
 
-        DemoChainedSkillAbciApp.event_to_timeout[
+        AlprinaSkillAbciApp.event_to_timeout[
             ResetPauseEvent.RESET_AND_PAUSE_TIMEOUT
         ] = (self.context.params.reset_pause_duration + MARGIN)
 
-        DemoChainedSkillAbciApp.event_to_timeout[DemoEvent.ROUND_TIMEOUT] = (
-            self.context.params.round_timeout_seconds * MULTIPLIER
+        AlprinaSkillAbciApp.event_to_timeout[HelloEvent.ROUND_TIMEOUT] = (
+                self.context.params.round_timeout_seconds * MULTIPLIER
         )
 
 
 class Params(  # pylint: disable=too-many-ancestors
     TerminationParams,
-    DemoParams,
+    HelloParams,
 ):
     """A model to represent params for multiple abci apps."""

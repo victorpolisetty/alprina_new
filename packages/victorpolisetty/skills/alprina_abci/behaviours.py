@@ -17,12 +17,12 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This package contains round behaviours of DemoChainedSkillAbci."""
+"""This package contains round behaviours of AlprinaSkillAbci."""
 
 from typing import Set, Type
 
-from packages.author.skills.demo_abci.behaviours import DemoRoundBehaviour
-from packages.author.skills.demo_chained_abci.composition import DemoChainedSkillAbciApp
+from packages.victorpolisetty.skills.hello_abci.behaviours import HelloRoundBehaviour
+from packages.victorpolisetty.skills.alprina_abci.composition import AlprinaSkillAbciApp
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
@@ -43,16 +43,16 @@ from packages.valory.skills.transaction_settlement_abci.behaviours import (
 )
 
 
-class DemoChainedConsensusBehaviour(AbstractRoundBehaviour):
+class AlprinaConsensusBehaviour(AbstractRoundBehaviour):
     """Class to define the behaviours this AbciApp has."""
 
     initial_behaviour_cls = RegistrationStartupBehaviour
-    abci_app_cls = DemoChainedSkillAbciApp
+    abci_app_cls = AlprinaSkillAbciApp
     behaviours: Set[Type[BaseBehaviour]] = {
         *AgentRegistrationRoundBehaviour.behaviours,
         *ResetPauseABCIConsensusBehaviour.behaviours,
         *TransactionSettlementRoundBehaviour.behaviours,
         *TerminationAbciBehaviours.behaviours,
-        *DemoRoundBehaviour.behaviours,
+        *HelloRoundBehaviour.behaviours,
     }
     background_behaviours_cls = {BackgroundBehaviour}

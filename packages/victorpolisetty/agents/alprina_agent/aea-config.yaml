@@ -1,8 +1,8 @@
-agent_name: demo_agent
-author: author
+agent_name: alprina_agent
+author: victorpolisetty
 version: 0.1.0
 license: Apache-2.0
-description: A demo agent.
+description: A alprina agent.
 aea_version: '>=1.19.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeidhbmjkqmabkap33fzf4y2nay5ik5jstqunyh4llelrskwzrrxb2e
@@ -31,8 +31,8 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeihat4giyc4bz6zopvahcj4iw53356pbtwfn7p4d5yflwly2qhahum
 - valory/abstract_round_abci:0.1.0:bafybeifbf2v3iedw4mwf5aifslacqfvzuutmisvks7g4co5nwxgntym3fm
-- author/demo_abci:0.1.0:bafybeiauht4bi7sxvle3doschb4mtnmaabehfirhawkhdunzi7g46xayoy
-- author/demo_chained_abci:0.1.0:bafybeiaq54jnaude4bqtg7fi6waxzpi4jvvoh4mzacrtexpc2uy7lyvc2q
+- victorpolisetty/hello_abci:0.1.0:bafybeibw6x7433rjrgc5oztjebvxyj3p6rfthhy4k3ej3ouqdvpfecfk4m
+- victorpolisetty/alprina_abci:0.1.0:bafybeigah36fwm7eisnqx6vyf66obyig6fdapbpfuk5h2lkrxbxom3ocea
 - valory/registration_abci:0.1.0:bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva
 - valory/reset_pause_abci:0.1.0:bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e
 - valory/termination_abci:0.1.0:bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py
@@ -74,7 +74,7 @@ default_connection: null
 public_id: valory/abci:0.1.0
 type: connection
 config:
-  target_skill_id: author/demo_chained_abci:0.1.0
+  target_skill_id: victorpolisetty/alprina_abci:0.1.0
   host: ${str:localhost}
   port: ${int:26658}
   use_tendermint: ${bool:false}
@@ -109,7 +109,7 @@ cert_requests:
   public_key: ${str:02d3a830c9d6ea1ae91936951430dee11f4662f33118b02190693be835359a9d77}
   save_path: .certs/acn_cosmos_11000.txt
 ---
-public_id: author/demo_chained_abci:0.1.0
+public_id: victorpolisetty/alprina_abci:0.1.0
 type: skill
 models:
   benchmark_tool:
@@ -152,7 +152,7 @@ models:
       request_retry_delay: 1.0
       request_timeout: 10.0
       round_timeout_seconds: 30.0
-      service_id: demo
+      service_id: alprina
       service_registry_address: ${str:null}
       setup:
         all_participants: ${list:["0x5a3151e7E265445d355697419DCEAfaE6dc67048"]}
@@ -182,4 +182,4 @@ public_id: valory/http_server:0.22.0:bafybeicblltx7ha3ulthg7bzfccuqqyjmihhrvfezt
 type: connection
 config:
   host: 0.0.0.0
-  target_skill_id: valory/demo_chained_abci:0.1.0
+  target_skill_id: valory/alprina_abci:0.1.0

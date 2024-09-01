@@ -17,9 +17,9 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the handlers for the skill of DemoChainedAbciApp."""
+"""This module contains the handlers for the skill of AlprinaAbciApp."""
 
-from packages.author.skills.demo_abci.handlers import HttpHandler as BaseHttpHandler
+from packages.victorpolisetty.skills.hello_abci.handlers import HttpHandler as BaseHttpHandler
 from packages.valory.skills.abstract_round_abci.handlers import (
     ABCIRoundHandler as BaseABCIRoundHandler,
 )
