@@ -19,7 +19,7 @@ connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
+- valory/abstract_round_abci:0.1.0:bafybeifbf2v3iedw4mwf5aifslacqfvzuutmisvks7g4co5nwxgntym3fm
 behaviours:
   main:
     args: {}
@@ -52,7 +52,7 @@ models:
     class_name: AbciDialogues
   benchmark_tool:
     args:
-      log_dir: /logs
+      log_dir: /tmp
     class_name: BenchmarkTool
   contract_api_dialogues:
     args: {}

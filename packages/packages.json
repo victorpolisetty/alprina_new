@@ -1,9 +1,9 @@
 {
     "dev": {
-        "skill/author/demo_abci/0.1.0": "bafybeiezb2qjtas6n6fgfsmfrdgt6odolnloc7f74jliyjmwhdfwkizi4q",
-        "skill/author/demo_chained_abci/0.1.0": "bafybeie7h7ppfa4pr3igpxs6t56mf5jmptfy5arxnwyjdjacwjyn2jlgxq",
-        "agent/author/demo_agent/0.1.0": "bafybeidlv6vbdbxzitjx3s6yp47gsvlultprotfglvmqi5ctjwu4jhmgwu",
-        "service/author/demo_service/0.1.0": "bafybeics7utpp7lka3ctlvaqolzqd62vlflzeenzxg734queig2cxzrnhq"
+        "skill/author/demo_abci/0.1.0": "bafybeiauht4bi7sxvle3doschb4mtnmaabehfirhawkhdunzi7g46xayoy",
+        "skill/author/demo_chained_abci/0.1.0": "bafybeiaq54jnaude4bqtg7fi6waxzpi4jvvoh4mzacrtexpc2uy7lyvc2q",
+        "agent/author/demo_agent/0.1.0": "bafybeietbdqmf6aacuimclq4l2nbmeuee7fkp4ghd667kdzhligmaua5ey",
+        "service/author/demo_service/0.1.0": "bafybeibqdf2ina2nucn7jyzknfdexbrhidwu3kkb5626ykmoz6nlvwopou"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi",
@@ -25,10 +25,10 @@
         "connection/valory/p2p_libp2p_client/0.1.0": "bafybeid3xg5k2ol5adflqloy75ibgljmol6xsvzvezebsg7oudxeeolz7e",
         "connection/valory/http_server/0.22.0": "bafybeihpgu56ovmq4npazdbh6y6ru5i7zuv6wvdglpxavsckyih56smu7m",
         "skill/valory/abstract_abci/0.1.0": "bafybeihat4giyc4bz6zopvahcj4iw53356pbtwfn7p4d5yflwly2qhahum",
-        "skill/valory/reset_pause_abci/0.1.0": "bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam",
-        "skill/valory/registration_abci/0.1.0": "bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm",
-        "skill/valory/abstract_round_abci/0.1.0": "bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i",
-        "skill/valory/termination_abci/0.1.0": "bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44",
-        "skill/valory/transaction_settlement_abci/0.1.0": "bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq"
+        "skill/valory/reset_pause_abci/0.1.0": "bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e",
+        "skill/valory/registration_abci/0.1.0": "bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva",
+        "skill/valory/abstract_round_abci/0.1.0": "bafybeifbf2v3iedw4mwf5aifslacqfvzuutmisvks7g4co5nwxgntym3fm",
+        "skill/valory/termination_abci/0.1.0": "bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py",
+        "skill/valory/transaction_settlement_abci/0.1.0": "bafybeicormvl6aab2asuo754jy742hikb26ak3tgzpslxijk6rjd6ol7aq"
     }
 }

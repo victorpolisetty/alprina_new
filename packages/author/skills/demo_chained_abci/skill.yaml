@@ -18,12 +18,12 @@ connections: []
 contracts: []
 protocols: []
 skills:
-- valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
-- valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
-- valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
-- valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
-- author/demo_abci:0.1.0:bafybeiezb2qjtas6n6fgfsmfrdgt6odolnloc7f74jliyjmwhdfwkizi4q
-- valory/transaction_settlement_abci:0.1.0:bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq
+- valory/abstract_round_abci:0.1.0:bafybeifbf2v3iedw4mwf5aifslacqfvzuutmisvks7g4co5nwxgntym3fm
+- valory/registration_abci:0.1.0:bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva
+- valory/reset_pause_abci:0.1.0:bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e
+- valory/termination_abci:0.1.0:bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py
+- author/demo_abci:0.1.0:bafybeiauht4bi7sxvle3doschb4mtnmaabehfirhawkhdunzi7g46xayoy
+- valory/transaction_settlement_abci:0.1.0:bafybeicormvl6aab2asuo754jy742hikb26ak3tgzpslxijk6rjd6ol7aq
 behaviours:
   main:
     args: {}
@@ -56,7 +56,7 @@ models:
     class_name: AbciDialogues
   benchmark_tool:
     args:
-      log_dir: /logs
+      log_dir: /tmp
     class_name: BenchmarkTool
   contract_api_dialogues:
     args: {}
