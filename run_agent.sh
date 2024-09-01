@@ -1,6 +1,6 @@
-if test -d demo_agent; then
+if test -d alprina_agent; then
   echo "Removing previous agent build"
-  rm -r demo_agent
+  rm -r alprina_agent
 fi
 
 find . -empty -type d -delete  # remove empty directories to avoid wrong hashes

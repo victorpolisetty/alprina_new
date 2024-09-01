@@ -6,7 +6,7 @@ description: The chained abci for the alprina.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeidb6ytt3yd3wkvqn3jygksdlx62oqtjp737du7huvedqkkybp3asq
+  __init__.py: bafybeifgcv6yxiptwtim5kmpg3kmfwctkz7tatqw2vtffpdy4wsmymzkzu
   behaviours.py: bafybeigvvzbmnwmmhyv2sqxp7m2ottrfug2hfnwllutfglkuaxfq4iqzpm
   composition.py: bafybeigukdebefkw7k47tj5jxsg533juzebuyztwxvx4emrctnan3so3rm
   dialogues.py: bafybeict3vkqfezgys6i6z54b26as62upcet2ju3un5y7cqlxfnr75lgjq
@@ -22,7 +22,7 @@ skills:
 - valory/registration_abci:0.1.0:bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva
 - valory/reset_pause_abci:0.1.0:bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e
 - valory/termination_abci:0.1.0:bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py
-- victorpolisetty/hello_abci:0.1.0:bafybeibcvmrwwatgfa2byysrhql4qxvlsn2koikps6ilp77f4xc5jghrqe
+- victorpolisetty/hello_abci:0.1.0:bafybeiezfjqxk52x7xnbglbo2jr65unnu2llmaqtlzaudidpbxcbqgtidu
 - valory/transaction_settlement_abci:0.1.0:bafybeicormvl6aab2asuo754jy742hikb26ak3tgzpslxijk6rjd6ol7aq
 behaviours:
   main:

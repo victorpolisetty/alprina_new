@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the implementation of the demo chained skill."""
+"""This module contains the implementation of the alprina chained skill."""
 
 from aea.configurations.base import PublicId
 

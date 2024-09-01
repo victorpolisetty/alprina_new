@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the implementation of the demo skill."""
+"""This module contains the implementation of the hello skill."""
 
 from aea.configurations.base import PublicId
 
