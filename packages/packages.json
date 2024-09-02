@@ -2,12 +2,12 @@
     "dev": {
         "skill/author/demo_abci/0.1.0": "bafybeiauht4bi7sxvle3doschb4mtnmaabehfirhawkhdunzi7g46xayoy",
         "skill/author/demo_chained_abci/0.1.0": "bafybeiaq54jnaude4bqtg7fi6waxzpi4jvvoh4mzacrtexpc2uy7lyvc2q",
-        "skill/victorpolisetty/hello_abci/0.1.0": "bafybeiezfjqxk52x7xnbglbo2jr65unnu2llmaqtlzaudidpbxcbqgtidu",
-        "skill/victorpolisetty/alprina_abci/0.1.0": "bafybeidgn4w5q66rfybpe3yevmj6glnojssxs6ogyh4igethjdamwruswm",
+        "skill/victorpolisetty/hello_abci/0.1.0": "bafybeignmahvpybs7v7d3nlketqobgzszibqhzqtxsd6amfkl7agyovzha",
+        "skill/victorpolisetty/alprina_abci/0.1.0": "bafybeihtwrftd2jf45drd4dbchcp2n4ees3ognfjvjn3ixtfbqgpkyuohm",
         "agent/author/demo_agent/0.1.0": "bafybeietbdqmf6aacuimclq4l2nbmeuee7fkp4ghd667kdzhligmaua5ey",
-        "agent/victorpolisetty/alprina_agent/0.1.0": "bafybeid54jeyrvtk5fz5dcsgb36f6v2ojdm65so6aw4ocebwmzwc2p4joa",
+        "agent/victorpolisetty/alprina_agent/0.1.0": "bafybeialwgtxjy3xgakdzgryfan6giuuxbvwsok5vxhpukyszyw52c2kjq",
         "service/author/demo_service/0.1.0": "bafybeibqdf2ina2nucn7jyzknfdexbrhidwu3kkb5626ykmoz6nlvwopou",
-        "service/victorpolisetty/alprina_service/0.1.0": "bafybeiar4czgo6dvquhbvibogzbjsbdscto5oq7rp53rvsmdqfvanb55tq"
+        "service/victorpolisetty/alprina_service/0.1.0": "bafybeicbdxuqukkh2fc6l2zwulbge4qi2534ooc7i3neblt455rtp5z4xe"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi",

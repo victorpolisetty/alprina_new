@@ -29,3 +29,10 @@ class HelloPayload(BaseTxPayload):
     """Represent a transaction payload for the HelloRound."""
 
     content: str
+
+
+@dataclass(frozen=True)
+class CollectAlpacaHistoricalDataPayload(BaseTxPayload):
+    """Represent a transaction payload for the CollectAlpacaHistoricalDataRound."""
+
+    content: str

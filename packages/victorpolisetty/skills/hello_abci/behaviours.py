@@ -23,10 +23,14 @@ from abc import ABC
 from typing import Generator, Set, Type, cast
 
 from packages.victorpolisetty.skills.hello_abci.models import Params, SharedState
-from packages.victorpolisetty.skills.hello_abci.payloads import HelloPayload
+from packages.victorpolisetty.skills.hello_abci.payloads import (
+    HelloPayload,
+    CollectAlpacaHistoricalDataPayload,
+)
 from packages.victorpolisetty.skills.hello_abci.rounds import (
     HelloAbciApp,
     HelloRound,
+    CollectAlpacaHistoricalDataRound,
     SynchronizedData,
 )
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
@@ -76,6 +80,28 @@ class HelloBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
         self.set_done()
 
 
+class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
+    """Behaviour to request URLs from search engine"""
+
+    matching_round: Type[AbstractRound] = CollectAlpacaHistoricalDataRound
+
+    def async_act(self) -> Generator:
+        """Do the act, supporting asynchronous execution."""
+
+        with self.context.benchmark_tool.measure(self.behaviour_id).local():
+            sender = self.context.agent_address
+            shout_data = self.synchronized_data.hello_data
+            payload_content = "Shouting: " + shout_data
+            self.context.logger.info(payload_content)
+            payload = CollectAlpacaHistoricalDataPayload(sender=sender, content=payload_content)
+
+        with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
+            yield from self.send_a2a_transaction(payload)
+            yield from self.wait_until_round_end()
+
+        self.set_done()
+
+
 class HelloRoundBehaviour(AbstractRoundBehaviour):
     """HelloRoundBehaviour"""
 
@@ -83,4 +109,5 @@ class HelloRoundBehaviour(AbstractRoundBehaviour):
     abci_app_cls = HelloAbciApp  # type: ignore
     behaviours: Set[Type[BaseBehaviour]] = [  # type: ignore
         HelloBehaviour,
+        CollectAlpacaHistoricalDataBehaviour
     ]

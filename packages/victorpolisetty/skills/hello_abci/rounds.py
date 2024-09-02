@@ -22,7 +22,10 @@
 from enum import Enum
 from typing import Dict, FrozenSet, Optional, Set
 
-from packages.victorpolisetty.skills.hello_abci.payloads import HelloPayload
+from packages.victorpolisetty.skills.hello_abci.payloads import (
+    HelloPayload,
+    CollectAlpacaHistoricalDataPayload
+)
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
     AbciAppTransitionFunction,
@@ -67,6 +70,16 @@ class SynchronizedData(BaseSynchronizedData):
         """Get the participants to the hello round."""
         return self._get_deserialized("participant_to_hello_round")
 
+    @property
+    def search_alpaca_historical_data(self) -> Optional[str]:
+        """Get the hello_data."""
+        return self.db.get("hello_data", None)
+
+    @property
+    def participant_to_alpaca_historical_data_round(self) -> DeserializedCollection:
+        """Get the participants to the hello round."""
+        return self._get_deserialized("participant_to_hello_round")
+
 
 class HelloRound(CollectSameUntilThresholdRound):
     """HelloRound"""
@@ -79,6 +92,17 @@ class HelloRound(CollectSameUntilThresholdRound):
     selection_key = get_name(SynchronizedData.hello_data)
 
     # Event.ROUND_TIMEOUT  # this needs to be mentioned for static checkers
+
+
+class CollectAlpacaHistoricalDataRound(CollectSameUntilThresholdRound):
+    """CollectAlpacaHistoricalDataRound"""
+
+    payload_class = CollectAlpacaHistoricalDataPayload
+    synchronized_data_class = SynchronizedData
+    done_event = Event.DONE
+    no_majority_event = Event.NO_MAJORITY
+    collection_key = get_name(SynchronizedData.search_alpaca_historical_data)
+    selection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
 
 
 class FinishedHelloRound(DegenerateRound):
@@ -96,6 +120,11 @@ class HelloAbciApp(AbciApp[Event]):
         HelloRound: {
             Event.NO_MAJORITY: HelloRound,
             Event.ROUND_TIMEOUT: HelloRound,
+            Event.DONE: CollectAlpacaHistoricalDataRound,
+        },
+        CollectAlpacaHistoricalDataRound: {
+            Event.NO_MAJORITY: CollectAlpacaHistoricalDataRound,
+            Event.ROUND_TIMEOUT: CollectAlpacaHistoricalDataRound,
             Event.DONE: FinishedHelloRound,
         },
         FinishedHelloRound: {},

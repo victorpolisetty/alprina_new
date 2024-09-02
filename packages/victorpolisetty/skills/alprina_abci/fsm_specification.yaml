@@ -11,13 +11,17 @@ start_states:
 - RegistrationStartupRound
 states:
 - HelloRound
+- CollectAlpacaHistoricalDataRound
 - RegistrationRound
 - RegistrationStartupRound
 - ResetAndPauseRound
 transition_func:
-    (HelloRound, DONE): ResetAndPauseRound
+    (HelloRound, DONE): CollectAlpacaHistoricalDataRound
     (HelloRound, NO_MAJORITY): HelloRound
     (HelloRound, ROUND_TIMEOUT): HelloRound
+    (CollectAlpacaHistoricalDataRound, DONE): ResetAndPauseRound
+    (CollectAlpacaHistoricalDataRound, NO_MAJORITY): CollectAlpacaHistoricalDataRound
+    (CollectAlpacaHistoricalDataRound, ROUND_TIMEOUT): CollectAlpacaHistoricalDataRound
     (RegistrationRound, DONE): HelloRound
     (RegistrationRound, NO_MAJORITY): RegistrationRound
     (RegistrationStartupRound, DONE): HelloRound

@@ -62,30 +62,23 @@ from packages.valory.skills.abstract_round_abci.dialogues import (
     TendermintDialogues as BaseTendermintDialogues,
 )
 
-
 AbciDialogue = BaseAbciDialogue
 AbciDialogues = BaseAbciDialogues
-
 
 HttpDialogue = BaseHttpDialogue
 HttpDialogues = BaseHttpDialogues
 
-
 SigningDialogue = BaseSigningDialogue
 SigningDialogues = BaseSigningDialogues
-
 
 LedgerApiDialogue = BaseLedgerApiDialogue
 LedgerApiDialogues = BaseLedgerApiDialogues
 
-
 ContractApiDialogue = BaseContractApiDialogue
 ContractApiDialogues = BaseContractApiDialogues
 
-
 TendermintDialogue = BaseTendermintDialogue
 TendermintDialogues = BaseTendermintDialogues
-
 
 IpfsDialogue = BaseIpfsDialogue
 IpfsDialogues = BaseIpfsDialogues

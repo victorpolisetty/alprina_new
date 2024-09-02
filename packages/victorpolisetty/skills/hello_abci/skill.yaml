@@ -7,13 +7,13 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeidzqmjuwtxervgf2ra5q2dvcer7sh2d4thp7nztfrnmjgq6jhctle
-  behaviours.py: bafybeibatiikc2pcvqsalkwblavev55fxcwllppx3o7n6rg43fn5ytfi2y
-  dialogues.py: bafybeigtvhdpeivvby66vilba7oatv7sxvyi2xupmhyfjtpdcwnqitm72i
-  fsm_specification.yaml: bafybeig2cna4tkkyol5bpl5w4oxy5cvyapxkkt5d3n4myptjclo7tx54ve
-  handlers.py: bafybeihngjrbi2ldffuipy6taby2gxmndeoadwpaykds7bik3oyd6332ou
-  models.py: bafybeiejdwbfoo3d3uzjwxir7alxdxfdvt4ujawnjqvhoz32qdwzxwnigi
-  payloads.py: bafybeiapq52k53g2ugamgc7wq7jczzwk47t7rfn7gb4wmo4sacal625xya
-  rounds.py: bafybeichhpdhhy6qkp2555xb5ws3v7ewytm4fs4umjf2ti4hhaspmf3lru
+  behaviours.py: bafybeigqg7ppmjxbg6w42rhypysnrdr6phffjzlmaf5wlmxwc6z6shrse4
+  dialogues.py: bafybeia7ne6qiwalkjfwirifx6niquv4ol63uxjkd4v2vv3x5tadrnwkpa
+  fsm_specification.yaml: bafybeiat2qkq7mlacsxa4frcezmwynssmzll6om3gc5zz4bwzyy4rinoge
+  handlers.py: bafybeiah2q3whi6ru53ze2f77ai2x7nlngs66eac2iowur54gl6xhjqcoy
+  models.py: bafybeibckfyhy73uzr5d3xzie6kx6rx3j6wbf6uftvdxsbsbnxisxyctg4
+  payloads.py: bafybeigerbrplsmuaavlro5jistvmmrv6ibart5mcneqcmxtqbysqmot64
+  rounds.py: bafybeihwhzz335c34q25nbabnpcli7wxdjxydmvvlekvhwor4jfhlb6dii
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
