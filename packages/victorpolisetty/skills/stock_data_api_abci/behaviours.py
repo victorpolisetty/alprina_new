@@ -85,6 +85,32 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
 
     matching_round: Type[AbstractRound] = CollectAlpacaHistoricalDataRound
 
+    @property
+    def params(self) -> Params:
+        """Get the parameters."""
+        return cast(Params, self.context.params)
+
+    def get_payload_content(self, query: str) -> Generator:
+        """Search Google using a custom search engine."""
+        api_keys = self.params.api_keys
+        google_api_key = api_keys["google_api_key"]
+        google_engine_id = api_keys["google_engine_id"]
+        num = 1
+
+        method = "GET"
+        url = "https://www.googleapis.com/customsearch/v1"
+        parameters = {
+            "key": google_api_key,
+            "cx": google_engine_id,
+            "q": query,
+            "num": num,
+        }
+        response = yield from self.get_http_response(method, url, parameters)
+        search = response.json()
+        print(search)
+
+        return [response["link"] for result in search.get("items", [])]
+
     def async_act(self) -> Generator:
         """Do the act, supporting asynchronous execution."""
 
@@ -92,6 +118,8 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
             sender = self.context.agent_address
             shout_data = self.synchronized_data.hello_data
             payload_content = "Shouting: " + shout_data
+            search_query = self.synchronized_data.hello_data
+            payload_content = yield from self.get_payload_content(search_query)
             self.context.logger.info(payload_content)
             payload = CollectAlpacaHistoricalDataPayload(sender=sender, content=payload_content)
 

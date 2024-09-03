@@ -41,6 +41,13 @@ class SharedState(BaseSharedState):
     abci_app_cls = StockDataApiAbciApp
 
 
+Requests = BaseRequests
+BenchmarkTool = BaseBenchmarkTool
+
+
+#Params = BaseParams
+
+
 class Params(Model):
     """A model to represent params for multiple abci apps."""
 
@@ -116,8 +123,3 @@ class Params(Model):
     #             f"agent_mech_contract_addresses {address} must be in mech_configs!",
     #         )
     #     return mech_configs
-
-
-Requests = BaseRequests
-BenchmarkTool = BaseBenchmarkTool
-Params = BaseParams

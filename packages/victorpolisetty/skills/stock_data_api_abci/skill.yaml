@@ -7,11 +7,11 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeigr3e3tnk4ptncydqkfahfmrsjpkrffaypmgyu4f2ndi5qnno67ye
-  behaviours.py: bafybeidxoiyrme43jxocpbk2x2qxwthwbtue422dlzh4nd5ljde6pkmswy
+  behaviours.py: bafybeibf36hbnk4d3vj2qzpawd5aol7nql2h5gtguqsmsryhrtyubpjrci
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
   fsm_specification.yaml: bafybeibu6vo5xf7jdxxoet7t535e6axzcy2qotprwytyaa75bow32d27hm
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
-  models.py: bafybeicr2szi6vcmj2os3zx6xthq67afyjr7nue3yweglp2otkl5ed2uci
+  models.py: bafybeidntkvcxed5n5dwte6o24xk2f5c7djkausmadilwynxch67giszdi
   payloads.py: bafybeic6b6vut36gcjs6ygi5743swthhthphrhx64ie7ck4d5xdnlrrb3y
   rounds.py: bafybeidjxfkuus4jyea2nzcmxoy4iozlcknvo6q7wmjip33wspyutgid7e
 fingerprint_ignore_patterns: []
@@ -119,6 +119,22 @@ models:
       tendermint_url: http://localhost:26657
       tx_timeout: 10.0
       validate_timeout: 1205
+      task_deadline: 240.0
+      api_keys_json:
+      - - openai
+        - dummy_api_key
+      - - stabilityai
+        - dummy_api_key
+      - - google_api_key
+        - dummy_api_key
+      - - google_engine_id
+        - dummy_api_key
+      polling_interval: 30.0
+      agent_index: 0
+      num_agents: 1
+      from_block_range: 5000
+      timeout_limit: 3
+      max_block_window: 500
       service_endpoint_base: https://demo.staging.autonolas.tech/
     class_name: Params
   requests:
