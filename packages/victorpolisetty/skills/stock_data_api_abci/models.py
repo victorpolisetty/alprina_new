@@ -43,12 +43,10 @@ class SharedState(BaseSharedState):
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
-
-
 #Params = BaseParams
 
 
-class Params(Model):
+class Params(BaseParams):
     """A model to represent params for multiple abci apps."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -68,6 +66,9 @@ class Params(Model):
         self.api_keys: Dict = self._nested_list_todict_workaround(
             kwargs, "api_keys_json"
         )
+        print("\nParams api_keys: ", self.api_keys)
+        print()
+
         # self.file_hash_to_tools: Dict[
         #     str, List[str]
         # ] = self._nested_list_todict_workaround(

@@ -41,7 +41,7 @@ from packages.valory.skills.abstract_round_abci.behaviours import (
 
 
 class HelloBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
-    """Base behaviour for the hello_abci skill."""
+    """Base behaviour for the stock_data_api_abci skill."""
 
     @property
     def synchronized_data(self) -> SynchronizedData:
@@ -118,8 +118,6 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
 
         with self.context.benchmark_tool.measure(self.behaviour_id).local():
             sender = self.context.agent_address
-            shout_data = self.synchronized_data.hello_data
-            payload_content = "Shouting: " + shout_data
             search_query = self.synchronized_data.hello_data
             payload_content = yield from self.get_payload_content(search_query)
             self.context.logger.info(payload_content)
@@ -128,6 +126,7 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
         with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()
+
         self.set_done()
 
 
