@@ -183,8 +183,7 @@ type: skill
 models:
   params:
     args:
-      api_keys_json: ${list:[["openai", "dummy_api_key"],["stabilityai", "dummy_api_key"],["google_api_key","dummy_api_key"],["google_engine_id",
-        "dummy_api_key"]]}
+      api_keys_json: ${API_KEYS:list:[]}
       task_deadline: ${float:240.0}
       polling_interval: ${float:30.0}
       agent_index: ${int:0}

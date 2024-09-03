@@ -96,6 +96,8 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
         google_api_key = api_keys["google_api_key"]
         google_engine_id = api_keys["google_engine_id"]
         num = 1
+        print(f"google_api_key: {google_api_key}")
+        print(f"google_engine_id: {google_engine_id}")
 
         method = "GET"
         url = "https://www.googleapis.com/customsearch/v1"
