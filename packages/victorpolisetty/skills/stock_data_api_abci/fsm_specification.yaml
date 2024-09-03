@@ -5,7 +5,7 @@ alphabet_in:
 default_start_state: HelloRound
 final_states:
 - FinishedHelloRound
-label: HelloAbciApp
+label: StockDataApiAbciApp
 start_states:
 - HelloRound
 states:

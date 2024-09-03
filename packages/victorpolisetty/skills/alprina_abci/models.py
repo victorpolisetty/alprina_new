@@ -19,9 +19,9 @@
 
 """This module contains the shared state for the abci skill of AlprinaSkillAbciApp."""
 
-from packages.victorpolisetty.skills.hello_abci.models import Params as HelloParams
-from packages.victorpolisetty.skills.hello_abci.models import SharedState as BaseSharedState
-from packages.victorpolisetty.skills.hello_abci.rounds import Event as HelloEvent
+from packages.victorpolisetty.skills.stock_data_api_abci.models import Params as StockDataApiParams
+from packages.victorpolisetty.skills.stock_data_api_abci.models import SharedState as BaseSharedState
+from packages.victorpolisetty.skills.stock_data_api_abci.rounds import Event as HelloEvent
 from packages.victorpolisetty.skills.alprina_abci.composition import AlprinaSkillAbciApp
 from packages.valory.skills.abstract_round_abci.models import (
     BenchmarkTool as BaseBenchmarkTool,
@@ -32,7 +32,6 @@ from packages.valory.skills.abstract_round_abci.tests.data.dummy_abci.models imp
 )
 from packages.valory.skills.reset_pause_abci.rounds import Event as ResetPauseEvent
 from packages.valory.skills.termination_abci.models import TerminationParams
-
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
@@ -67,6 +66,6 @@ class SharedState(BaseSharedState):
 
 class Params(  # pylint: disable=too-many-ancestors
     TerminationParams,
-    HelloParams,
+    StockDataApiParams,
 ):
     """A model to represent params for multiple abci apps."""

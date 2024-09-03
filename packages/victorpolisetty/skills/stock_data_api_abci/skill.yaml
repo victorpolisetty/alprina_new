@@ -1,4 +1,4 @@
-name: hello_abci
+name: stock_data_api_abci
 author: victorpolisetty
 version: 0.1.0
 type: skill
@@ -6,14 +6,14 @@ description: A hello skill.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeidzqmjuwtxervgf2ra5q2dvcer7sh2d4thp7nztfrnmjgq6jhctle
-  behaviours.py: bafybeigqg7ppmjxbg6w42rhypysnrdr6phffjzlmaf5wlmxwc6z6shrse4
-  dialogues.py: bafybeia7ne6qiwalkjfwirifx6niquv4ol63uxjkd4v2vv3x5tadrnwkpa
-  fsm_specification.yaml: bafybeiat2qkq7mlacsxa4frcezmwynssmzll6om3gc5zz4bwzyy4rinoge
-  handlers.py: bafybeiah2q3whi6ru53ze2f77ai2x7nlngs66eac2iowur54gl6xhjqcoy
-  models.py: bafybeibckfyhy73uzr5d3xzie6kx6rx3j6wbf6uftvdxsbsbnxisxyctg4
-  payloads.py: bafybeigerbrplsmuaavlro5jistvmmrv6ibart5mcneqcmxtqbysqmot64
-  rounds.py: bafybeihwhzz335c34q25nbabnpcli7wxdjxydmvvlekvhwor4jfhlb6dii
+  __init__.py: bafybeigr3e3tnk4ptncydqkfahfmrsjpkrffaypmgyu4f2ndi5qnno67ye
+  behaviours.py: bafybeidxoiyrme43jxocpbk2x2qxwthwbtue422dlzh4nd5ljde6pkmswy
+  dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
+  fsm_specification.yaml: bafybeibu6vo5xf7jdxxoet7t535e6axzcy2qotprwytyaa75bow32d27hm
+  handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
+  models.py: bafybeicr2szi6vcmj2os3zx6xthq67afyjr7nue3yweglp2otkl5ed2uci
+  payloads.py: bafybeic6b6vut36gcjs6ygi5743swthhthphrhx64ie7ck4d5xdnlrrb3y
+  rounds.py: bafybeidjxfkuus4jyea2nzcmxoy4iozlcknvo6q7wmjip33wspyutgid7e
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -23,7 +23,7 @@ skills:
 behaviours:
   main:
     args: {}
-    class_name: HelloRoundBehaviour
+    class_name: StockDataApiRoundBehaviour
 handlers:
   abci:
     args: {}

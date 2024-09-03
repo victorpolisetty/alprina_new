@@ -17,18 +17,18 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This package contains round behaviours of HelloAbciApp."""
+"""This package contains round behaviours of StockDataApiAbciApp."""
 
 from abc import ABC
 from typing import Generator, Set, Type, cast
 
-from packages.victorpolisetty.skills.hello_abci.models import Params, SharedState
-from packages.victorpolisetty.skills.hello_abci.payloads import (
+from packages.victorpolisetty.skills.stock_data_api_abci.models import Params, SharedState
+from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
     HelloPayload,
     CollectAlpacaHistoricalDataPayload,
 )
-from packages.victorpolisetty.skills.hello_abci.rounds import (
-    HelloAbciApp,
+from packages.victorpolisetty.skills.stock_data_api_abci.rounds import (
+    StockDataApiAbciApp,
     HelloRound,
     CollectAlpacaHistoricalDataRound,
     SynchronizedData,
@@ -98,15 +98,14 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
         with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
             yield from self.send_a2a_transaction(payload)
             yield from self.wait_until_round_end()
-
         self.set_done()
 
 
-class HelloRoundBehaviour(AbstractRoundBehaviour):
-    """HelloRoundBehaviour"""
+class StockDataApiRoundBehaviour(AbstractRoundBehaviour):
+    """StockDataApiBehaviour"""
 
     initial_behaviour_cls = HelloBehaviour
-    abci_app_cls = HelloAbciApp  # type: ignore
+    abci_app_cls = StockDataApiAbciApp  # type: ignore
     behaviours: Set[Type[BaseBehaviour]] = [  # type: ignore
         HelloBehaviour,
         CollectAlpacaHistoricalDataBehaviour

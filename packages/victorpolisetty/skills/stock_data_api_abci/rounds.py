@@ -17,12 +17,12 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This package contains the rounds of HelloAbciApp."""
+"""This package contains the rounds of StockDataApiAbciApp."""
 
 from enum import Enum
 from typing import Dict, FrozenSet, Optional, Set
 
-from packages.victorpolisetty.skills.hello_abci.payloads import (
+from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
     HelloPayload,
     CollectAlpacaHistoricalDataPayload
 )
@@ -41,7 +41,7 @@ from packages.valory.skills.abstract_round_abci.base import (
 
 
 class Event(Enum):
-    """HelloAbciApp Events"""
+    """StockDataApiAbciApp Events"""
 
     DONE = "done"
     NO_MAJORITY = "no_majority"
@@ -109,8 +109,8 @@ class FinishedHelloRound(DegenerateRound):
     """FinishedHelloRound"""
 
 
-class HelloAbciApp(AbciApp[Event]):
-    """HelloAbciApp"""
+class StockDataApiAbciApp(AbciApp[Event]):
+    """StockDataApiAbciApp"""
 
     initial_round_cls: AppState = HelloRound
     initial_states: Set[AppState] = {

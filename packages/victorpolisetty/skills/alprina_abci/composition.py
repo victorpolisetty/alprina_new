@@ -19,7 +19,7 @@
 
 """This package contains round behaviours of AlprinaSkillAbciApp."""
 
-import packages.victorpolisetty.skills.hello_abci.rounds as HelloAbci
+import packages.victorpolisetty.skills.stock_data_api_abci.rounds as StockDataApiAbci
 import packages.valory.skills.registration_abci.rounds as RegistrationAbci
 import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
 from packages.valory.skills.abstract_round_abci.abci_app_chain import (
@@ -35,9 +35,9 @@ from packages.valory.skills.termination_abci.rounds import (
 
 
 abci_app_transition_mapping: AbciAppTransitionMapping = {
-    RegistrationAbci.FinishedRegistrationRound: HelloAbci.HelloRound,
-    HelloAbci.FinishedHelloRound: ResetAndPauseAbci.ResetAndPauseRound,
-    ResetAndPauseAbci.FinishedResetAndPauseRound: HelloAbci.HelloRound,
+    RegistrationAbci.FinishedRegistrationRound: StockDataApiAbci.HelloRound,
+    StockDataApiAbci.FinishedHelloRound: ResetAndPauseAbci.ResetAndPauseRound,
+    ResetAndPauseAbci.FinishedResetAndPauseRound: StockDataApiAbci.HelloRound,
     ResetAndPauseAbci.FinishedResetAndPauseErrorRound: ResetAndPauseAbci.ResetAndPauseRound,
 }
 
@@ -50,7 +50,7 @@ termination_config = BackgroundAppConfig(
 AlprinaSkillAbciApp = chain(
     (
         RegistrationAbci.AgentRegistrationAbciApp,
-        HelloAbci.HelloAbciApp,
+        StockDataApiAbci.StockDataApiAbciApp,
         ResetAndPauseAbci.ResetPauseAbciApp,
     ),
     abci_app_transition_mapping,
