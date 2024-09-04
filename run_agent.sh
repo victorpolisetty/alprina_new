@@ -3,6 +3,8 @@ if test -d alprina_agent; then
   rm -r alprina_agent
 fi
 
+source .env
+
 find . -empty -type d -delete  # remove empty directories to avoid wrong hashes
 autonomy packages lock
 autonomy fetch --local --agent victorpolisetty/alprina_agent && cd alprina_agent

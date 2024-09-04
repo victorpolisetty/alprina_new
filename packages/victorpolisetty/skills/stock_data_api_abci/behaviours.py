@@ -22,6 +22,11 @@
 from abc import ABC
 from typing import Generator, Set, Type, cast
 
+from packages.valory.skills.abstract_round_abci.base import AbstractRound
+from packages.valory.skills.abstract_round_abci.behaviours import (
+    AbstractRoundBehaviour,
+    BaseBehaviour,
+)
 from packages.victorpolisetty.skills.stock_data_api_abci.models import Params, SharedState
 from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
     HelloPayload,
@@ -32,11 +37,6 @@ from packages.victorpolisetty.skills.stock_data_api_abci.rounds import (
     HelloRound,
     CollectAlpacaHistoricalDataRound,
     SynchronizedData,
-)
-from packages.valory.skills.abstract_round_abci.base import AbstractRound
-from packages.valory.skills.abstract_round_abci.behaviours import (
-    AbstractRoundBehaviour,
-    BaseBehaviour,
 )
 
 
@@ -81,53 +81,78 @@ class HelloBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
 
 
 class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
-    """Behaviour to request URLs from search engine"""
+    """Behaviour to observe and collect Alpaca historical data."""
 
-    matching_round: Type[AbstractRound] = CollectAlpacaHistoricalDataRound
-
-    @property
-    def params(self) -> Params:
-        """Get the parameters."""
-        return cast(Params, self.context.params)
-
-    def get_payload_content(self, query: str) -> Generator:
-        """Search Google using a custom search engine."""
-        api_keys = self.params.api_keys
-        google_api_key = api_keys["google_api_key"]
-        google_engine_id = api_keys["google_engine_id"]
-        num = 1
-        print(f"google_api_key: {google_api_key}")
-        print(f"google_engine_id: {google_engine_id}")
-
-        method = "GET"
-        url = "https://www.googleapis.com/customsearch/v1"
-        parameters = {
-            "key": google_api_key,
-            "cx": google_engine_id,
-            "q": query,
-            "num": num,
-        }
-        response = yield from self.get_http_response(method, url, parameters)
-        search = response.json()
-        print(search)
-
-        return [response["link"] for result in search.get("items", [])]
+    matching_round = CollectAlpacaHistoricalDataRound
 
     def async_act(self) -> Generator:
-        """Do the act, supporting asynchronous execution."""
+        """
+        Do the action.
 
+        Steps:
+        - Ask the configured API for historical stock price data.
+        - If the request fails, retry until max retries are exceeded.
+        - Send an observation transaction and wait for it to be mined.
+        - Wait until ABCI application transitions to the next round.
+        - Go to the next behaviour (set done event).
+        """
+
+        # Check if maximum retries have been exceeded
+        if self.context.alpaca_response.is_retries_exceeded():
+            # Wait to see if other agents can progress the round, otherwise restart
+            with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
+                yield from self.wait_until_round_end()
+            self.set_done()
+            return
+
+        # Measure the local execution time of the HTTP request
         with self.context.benchmark_tool.measure(self.behaviour_id).local():
-            sender = self.context.agent_address
-            search_query = self.synchronized_data.hello_data
-            payload_content = yield from self.get_payload_content(search_query)
-            self.context.logger.info(payload_content)
-            payload = CollectAlpacaHistoricalDataPayload(sender=sender, content=payload_content)
+            # Prepare API request specifications
+            api_specs = self.context.alpaca_response.get_spec()
 
-        with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
-            yield from self.send_a2a_transaction(payload)
-            yield from self.wait_until_round_end()
+            # Make the asynchronous HTTP request to the Alpaca API
+            response = yield from self.get_http_response(
+                method=api_specs["method"],
+                url=api_specs["url"],
+                headers=api_specs["headers"],
+                parameters=api_specs["parameters"],
+            )
 
-        self.set_done()
+            # Process the API response
+            historical_data = self.context.alpaca_response.process_response(response)
+
+        # Handle the API response
+        if historical_data:
+            self.context.logger.info(
+                f"Got historical data from {self.context.alpaca_response.api_id}: {historical_data}"
+            )
+            payload = CollectAlpacaHistoricalDataPayload(
+                self.context.agent_address, historical_data
+            )
+
+            # Send a transaction to the ABCI application and wait for the round to end
+            with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
+                yield from self.send_a2a_transaction(payload)
+                yield from self.wait_until_round_end()
+            self.set_done()
+        else:
+            self.context.logger.info(
+                f"Could not get historical data from {self.context.alpaca_response.api_id}"
+            )
+
+            # Wait before retrying
+            yield from self.sleep(
+                self.context.alpaca_response.retries_info.suggested_sleep_time
+            )
+            self.context.alpaca_response.increment_retries()
+
+    def clean_up(self) -> None:
+        """
+        Clean up resources due to a 'stop' event.
+
+        Reset retries or perform other necessary cleanup.
+        """
+        self.context.alpaca_response.reset_retries()
 
 
 class StockDataApiRoundBehaviour(AbstractRoundBehaviour):

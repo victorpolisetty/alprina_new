@@ -31,8 +31,8 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeihat4giyc4bz6zopvahcj4iw53356pbtwfn7p4d5yflwly2qhahum
 - valory/abstract_round_abci:0.1.0:bafybeifbf2v3iedw4mwf5aifslacqfvzuutmisvks7g4co5nwxgntym3fm
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihyc5swkn4qwaic6k66vrwbycizzaiydelzvj7drdig3i3cervmme
-- victorpolisetty/alprina_abci:0.1.0:bafybeiarajtjhlbrxd23vgvc2bi74l6ubfehs64h7tlriwx7e3cp26lfwq
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeigkxqiap2v23263wi5ibsa4awadgwc3ri7lddhtc57n4asjdf3f2m
+- victorpolisetty/alprina_abci:0.1.0:bafybeiaigjvozgde6o7tjjqztxs4vxatl4ljrucft6iuesfjlqnnd2cn34
 - valory/registration_abci:0.1.0:bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva
 - valory/reset_pause_abci:0.1.0:bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e
 - valory/termination_abci:0.1.0:bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py
@@ -177,7 +177,7 @@ models:
       serious_slash_unit_amount: ${int:8000000000000000}
       multisend_batch_size: ${int:50}
       ipfs_address: ${str:https://gateway.autonolas.tech/ipfs/}
-      api_keys_json: ${str:{}}
+      api_keys_json: ${API_KEYS_JSON:list:[]}
       task_deadline: ${float:240.0}
       polling_interval: ${float:30.0}
       agent_index: ${int:0}

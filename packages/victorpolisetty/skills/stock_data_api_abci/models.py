@@ -18,9 +18,12 @@
 # ------------------------------------------------------------------------------
 
 """This module contains the shared state for the abci skill of HelloAbciApp."""
-
+import os
+import json
+import base64
 from packages.victorpolisetty.skills.stock_data_api_abci.rounds import StockDataApiAbciApp
 from packages.valory.skills.abstract_round_abci.models import BaseParams
+from packages.valory.skills.abstract_round_abci.models import ApiSpecs
 from packages.valory.skills.abstract_round_abci.models import (
     BenchmarkTool as BaseBenchmarkTool,
 )
@@ -33,7 +36,9 @@ from typing import Any, Callable, Dict, List, Optional, cast
 
 from aea.exceptions import enforce
 from aea.skills.base import Model
-import json
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
 
 class SharedState(BaseSharedState):
     """Keep the current shared state of the skill."""
@@ -43,6 +48,8 @@ class SharedState(BaseSharedState):
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
+
+
 #Params = BaseParams
 
 
@@ -62,13 +69,18 @@ class Params(BaseParams):
         # self.in_flight_req: bool = False
         # self.from_block: Optional[int] = None
         # self.req_to_callback: Dict[str, Callable] = {}
-        print()
-        print("Params args: ", args)
-        print()
-        print("Params kwargs: ", kwargs)
-        self.api_keys: Dict = json.loads(kwargs.get("api_keys_json", "{}"))
-        print("\nParams api_keys: ", self.api_keys)
-        print()
+        # Load the API keys JSON from the environment variable
+        api_keys_json_str = os.getenv("API_KEYS_JSON", "[]")  # Get the JSON string, or default to empty list if not found
+
+        # Parse the JSON string into a list of lists
+        api_keys_list = json.loads(api_keys_json_str)
+
+        # Convert the list of lists into a dictionary
+        self.api_keys = {key: value for key, value in api_keys_list}
+        # self.api_keys: Dict = self._nested_list_todict_workaround(
+        #     kwargs, "api_keys_json"
+        # )
+        print("API KEYS: ", self.api_keys)
 
         # self.file_hash_to_tools: Dict[
         #     str, List[str]
@@ -95,33 +107,28 @@ class Params(BaseParams):
         #self.mech_to_config: Dict[str, MechConfig] = self._parse_mech_configs(kwargs)
         super().__init__(*args, **kwargs)
 
-    def _nested_list_todict_workaround(
-            self,
-            kwargs: Dict,
-            key: str,
-    ) -> Dict:
-        """Get a nested list from the kwargs and convert it to a dictionary."""
-        values = cast(List, kwargs.get(key))
-        if len(values) == 0:
-            raise ValueError(f"No {key} specified!")
-        return {value[0]: value[1] for value in values}
 
-    # def _parse_mech_configs(self, kwargs: Dict) -> Dict[str, MechConfig]:
-    #     """Parse the mech configs."""
-    #     mech_configs_json = self._nested_list_todict_workaround(
-    #         kwargs, "mech_to_config"
-    #     )
-    #     mech_configs_json = {
-    #         key: {value[0]: value[1]} for key, value in mech_configs_json.items()
-    #     }
+class AlpacaResponseSpecs(ApiSpecs):
+    """A model that wraps ApiSpecs for the Alpaca API response specifications."""
 
-    #     mech_configs = {
-    #         mech: MechConfig.from_dict(config)
-    #         for mech, config in mech_configs_json.items()
-    #     }
-    #     for address in self.agent_mech_contract_addresses:
-    #         enforce(
-    #             address in mech_configs,
-    #             f"agent_mech_contract_addresses {address} must be in mech_configs!",
-    #         )
-    #     return mech_configs
+    def get_spec(self) -> Dict[str, Any]:
+        """Return the specifications for the Alpaca API request."""
+        # Access the API keys loaded in Params
+        api_key_id = self.context.params.api_keys["APCA-API-KEY-ID"]
+        api_secret_key = self.context.params.api_keys["APCA-API-SECRET-KEY"]
+        return {
+            "method": "GET",
+            "url": "https://data.alpaca.markets/v2/stocks/bars",
+            "headers": {
+                "APCA-API-KEY-ID": api_key_id,
+                "APCA-API-SECRET-KEY": api_secret_key,
+                "accept": "application/json"
+            },
+            "parameters": {
+                "symbols": "TSLA",
+                "timeframe": "1Week",
+                "start": "2022-01-01",
+                "end": "2023-02-02",
+                "limit": 5
+            }  # Add any necessary query parameters here
+        }

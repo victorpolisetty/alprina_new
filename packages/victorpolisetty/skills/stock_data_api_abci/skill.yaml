@@ -7,11 +7,11 @@ license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeigr3e3tnk4ptncydqkfahfmrsjpkrffaypmgyu4f2ndi5qnno67ye
-  behaviours.py: bafybeihm63il63s246bnwfny3ddtf2nqe3o4l2cfi5b434devv6qgwewju
+  behaviours.py: bafybeifgyr3p3vrbmfvfk6rnapjg5owdcie7jhtucho2zrgnlf6mnfk3de
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
   fsm_specification.yaml: bafybeibu6vo5xf7jdxxoet7t535e6axzcy2qotprwytyaa75bow32d27hm
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
-  models.py: bafybeighh3oa3u7jqzl6rrjvaunlzl3hh4ym2fikkluyohcejgm3xs2xdq
+  models.py: bafybeiexggfx53e5knbqikjwkm2ijsomrefhorkryhxp64opjsaztlysqa
   payloads.py: bafybeic6b6vut36gcjs6ygi5743swthhthphrhx64ie7ck4d5xdnlrrb3y
   rounds.py: bafybeidjxfkuus4jyea2nzcmxoy4iozlcknvo6q7wmjip33wspyutgid7e
 fingerprint_ignore_patterns: []
@@ -121,7 +121,7 @@ models:
       use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
-      api_keys_json: '{}'
+      api_keys_json: []
       polling_interval: 30.0
       agent_index: 0
       num_agents: 1
@@ -135,6 +135,25 @@ models:
       serious_slash_unit_amount: 8000000000000000
       service_endpoint_base: https://demo.staging.autonolas.tech/
     class_name: Params
+  alpaca_response:
+    args:
+      api_id: alpaca_response
+      headers:
+        Content-Type: application/json
+        APCA-API-KEY-ID: null
+        APCA-API-SECRET-KEY: null
+      method: GET
+      parameters:
+      - symbols: 'TSLA'
+      - timeframe: '1Week'
+      - start: '2022-01-01'
+      - end: '2023-02-02'
+      - limit: 5
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://data.alpaca.markets/v2/stocks/bars
+    class_name: AlpacaResponseSpecs
   requests:
     args: {}
     class_name: Requests

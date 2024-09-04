@@ -12,7 +12,7 @@ fingerprint:
   dialogues.py: bafybeict3vkqfezgys6i6z54b26as62upcet2ju3un5y7cqlxfnr75lgjq
   fsm_specification.yaml: bafybeidlnwygr3dn56f7ud7boonadopfpcv4cp7pz76s2s76gijqwzzxhm
   handlers.py: bafybeihd3ahdzqql5yw5a54yw6rtjpzimb5ldavo2lc47dlnvsvw2tlkui
-  models.py: bafybeiaketfyl2y2ne5jb7x63edrfo55h4ftzyjctwy2rrvrm63ozw2ccq
+  models.py: bafybeiaya445di6gpeymlsze4brp7futbfqbw2cckqksm2zewzlbjthhpe
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -22,7 +22,7 @@ skills:
 - valory/registration_abci:0.1.0:bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva
 - valory/reset_pause_abci:0.1.0:bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e
 - valory/termination_abci:0.1.0:bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihyc5swkn4qwaic6k66vrwbycizzaiydelzvj7drdig3i3cervmme
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeigkxqiap2v23263wi5ibsa4awadgwc3ri7lddhtc57n4asjdf3f2m
 - valory/transaction_settlement_abci:0.1.0:bafybeicormvl6aab2asuo754jy742hikb26ak3tgzpslxijk6rjd6ol7aq
 behaviours:
   main:
@@ -125,7 +125,7 @@ models:
       use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
-      api_keys_json: '{}'
+      api_keys_json: []
       polling_interval: 30.0
       agent_index: 0
       num_agents: 1
@@ -155,6 +155,18 @@ models:
       retries: 5
       url: https://drand.cloudflare.com/public/latest
     class_name: RandomnessApi
+  alpaca_response:
+    args:
+      api_id: alpaca_response
+      headers:
+        Content-Type: application/json
+      method: GET
+      parameters: {}
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://data.alpaca.markets/v2/stocks/meta/exchanges
+    class_name: AlpacaResponseSpecs
   requests:
     args: {}
     class_name: Requests
