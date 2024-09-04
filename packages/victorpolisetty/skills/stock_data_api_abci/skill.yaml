@@ -11,7 +11,7 @@ fingerprint:
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
   fsm_specification.yaml: bafybeibu6vo5xf7jdxxoet7t535e6axzcy2qotprwytyaa75bow32d27hm
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
-  models.py: bafybeiawwfnbdiybc5usbrolcglaky4sts4inmsbdk2so4mkeuah3iuw2u
+  models.py: bafybeighh3oa3u7jqzl6rrjvaunlzl3hh4ym2fikkluyohcejgm3xs2xdq
   payloads.py: bafybeic6b6vut36gcjs6ygi5743swthhthphrhx64ie7ck4d5xdnlrrb3y
   rounds.py: bafybeidjxfkuus4jyea2nzcmxoy4iozlcknvo6q7wmjip33wspyutgid7e
 fingerprint_ignore_patterns: []
@@ -103,7 +103,7 @@ models:
       retry_attempts: 400
       retry_timeout: 3
       round_timeout_seconds: 30.0
-      service_id: stock_data_api
+      service_id: alprina
       service_registry_address: null
       setup:
         all_participants:
@@ -118,19 +118,21 @@ models:
       tendermint_p2p_url: localhost:26656
       tendermint_url: http://localhost:26657
       tx_timeout: 10.0
+      use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
-      api_keys_json:
-      - - openai
-        - dummy_api_key
-      - - stabilityai
-        - dummy_api_key
+      api_keys_json: '{}'
       polling_interval: 30.0
       agent_index: 0
       num_agents: 1
       from_block_range: 5000
       timeout_limit: 3
       max_block_window: 500
+      use_slashing: false
+      slash_cooldown_hours: 3
+      slash_threshold_amount: 10000000000000000
+      light_slash_unit_amount: 5000000000000000
+      serious_slash_unit_amount: 8000000000000000
       service_endpoint_base: https://demo.staging.autonolas.tech/
     class_name: Params
   requests:

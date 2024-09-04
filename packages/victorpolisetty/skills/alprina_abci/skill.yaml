@@ -22,7 +22,7 @@ skills:
 - valory/registration_abci:0.1.0:bafybeihpb5fjt22a7p7gokawbovmxcbam4st7hk5p475af46xwpatstdva
 - valory/reset_pause_abci:0.1.0:bafybeifxqr2giyswcerpl5ysbxf5py4tty52ypevpwr4zdr2vb4yidw42e
 - valory/termination_abci:0.1.0:bafybeibdrneq5nstqtwusdswjvsa2pxenq254yxesrlff2anxnvjzyc2py
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeiewjqb6ibct5dmicyphyxgukezad6btn2ya2hy2gagcldb4y2gwta
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihyc5swkn4qwaic6k66vrwbycizzaiydelzvj7drdig3i3cervmme
 - valory/transaction_settlement_abci:0.1.0:bafybeicormvl6aab2asuo754jy742hikb26ak3tgzpslxijk6rjd6ol7aq
 behaviours:
   main:
@@ -111,7 +111,8 @@ models:
       service_id: alprina
       service_registry_address: null
       setup:
-        all_participants: []
+        all_participants:
+        - '0x0000000000000000000000000000000000000000'
         safe_contract_address: '0x0000000000000000000000000000000000000000'
         consensus_threshold: null
       share_tm_config_on_startup: false
@@ -124,11 +125,7 @@ models:
       use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
-      api_keys_json:
-      - - openai
-        - dummy_api_key
-      - - stabilityai
-        - dummy_api_key
+      api_keys_json: '{}'
       polling_interval: 30.0
       agent_index: 0
       num_agents: 1

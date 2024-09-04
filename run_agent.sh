@@ -10,4 +10,5 @@ autonomy fetch --local --agent victorpolisetty/alprina_agent && cd alprina_agent
 cp $PWD/../ethereum_private_key.txt .
 autonomy add-key ethereum ethereum_private_key.txt
 autonomy issue-certificates
+# aea -s -v DEBUG run
 aea -s run

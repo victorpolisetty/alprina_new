@@ -33,7 +33,7 @@ from typing import Any, Callable, Dict, List, Optional, cast
 
 from aea.exceptions import enforce
 from aea.skills.base import Model
-
+import json
 
 class SharedState(BaseSharedState):
     """Keep the current shared state of the skill."""
@@ -62,10 +62,11 @@ class Params(BaseParams):
         # self.in_flight_req: bool = False
         # self.from_block: Optional[int] = None
         # self.req_to_callback: Dict[str, Callable] = {}
+        print()
+        print("Params args: ", args)
+        print()
         print("Params kwargs: ", kwargs)
-        self.api_keys: Dict = self._nested_list_todict_workaround(
-            kwargs, "api_keys_json"
-        )
+        self.api_keys: Dict = json.loads(kwargs.get("api_keys_json", "{}"))
         print("\nParams api_keys: ", self.api_keys)
         print()
 
