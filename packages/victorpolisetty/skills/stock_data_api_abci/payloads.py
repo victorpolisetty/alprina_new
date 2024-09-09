@@ -35,4 +35,4 @@ class HelloPayload(BaseTxPayload):
 class CollectAlpacaHistoricalDataPayload(BaseTxPayload):
     """Represent a transaction payload for the CollectAlpacaHistoricalDataRound."""
 
-    content: str
+    ipfs_hash: str

@@ -20,7 +20,8 @@
 """This package contains round behaviours of StockDataApiAbciApp."""
 
 from abc import ABC
-from typing import Generator, Set, Type, cast
+from typing import Generator, Set, Type, cast, Dict, Any, Optional
+from packages.valory.skills.abstract_round_abci.io_.store import SupportedFiletype
 
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
 from packages.valory.skills.abstract_round_abci.behaviours import (
@@ -39,6 +40,7 @@ from packages.victorpolisetty.skills.stock_data_api_abci.rounds import (
     SynchronizedData,
 )
 
+FILENAME = "usage"
 
 class HelloBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
     """Base behaviour for the stock_data_api_abci skill."""
@@ -129,9 +131,16 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
             historical_data_tsla_readable = self.make_response_readable(historical_data)
             print("The readable data is: ")
             print(historical_data_tsla_readable)
-            payload = CollectAlpacaHistoricalDataPayload(self.context.agent_address, historical_data_tsla_readable)
 
-            # Send a transaction to the ABCI application and wait for the round to end
+            # Store readable data as IPFS_HASH
+            ipfs_hash = yield from self.save_usage_to_ipfs(current_usage=historical_data)
+
+            if ipfs_hash is None:
+                # something went wrong
+                self.context.logger.warning("Could not save usage to IPFS.")
+                return None
+            payload = CollectAlpacaHistoricalDataPayload(self.context.agent_address, ipfs_hash)
+
             with self.context.benchmark_tool.measure(self.behaviour_id).consensus():
                 yield from self.send_a2a_transaction(payload)
                 yield from self.wait_until_round_end()
@@ -206,6 +215,17 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
 
         # Combine the data and explanation into the final readable format
         return explanation + "\n" + readable_output
+
+    def save_usage_to_ipfs(self, current_usage: Dict[str, Any]) -> Generator[None, None, Optional[str]]:
+        """Save usage to ipfs."""
+        ipfs_hash = yield from self.send_to_ipfs(
+            FILENAME, current_usage, filetype=SupportedFiletype.JSON
+        )
+
+        if ipfs_hash is None:
+            self.context.logger.warning("Could not update usage.")
+            return None
+        return ipfs_hash
 
     def clean_up(self) -> None:
         """
