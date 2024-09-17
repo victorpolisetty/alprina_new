@@ -21,7 +21,7 @@
 
 from typing import Set, Type
 
-from packages.victorpolisetty.skills.stock_data_api_abci.behaviours import StockDataApiRoundBehaviour
+from packages.victorpolisetty.skills.stock_data_api_abci.round_behaviour import StockDataApiRoundBehaviour
 from packages.victorpolisetty.skills.alprina_abci.composition import AlprinaSkillAbciApp
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
