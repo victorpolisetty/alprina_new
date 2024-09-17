@@ -17,16 +17,11 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This package contains the rounds of StockDataApiAbciApp."""
+"""This package contains the rounds of AlprinaLlmAbciApp."""
 
 from enum import Enum
 from typing import Dict, FrozenSet, Optional, Set
 
-from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
-    HelloPayload,
-    CollectAlpacaHistoricalDataPayload,
-    CollectPolygonSentimentAnalysisPayload,
-)
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
     AbciAppTransitionFunction,
@@ -39,10 +34,13 @@ from packages.valory.skills.abstract_round_abci.base import (
     EventToTimeout,
     get_name,
 )
+from packages.victorpolisetty.skills.alprina_llm_abci.payloads import (
+    PromptLlmPayload,
+)
 
 
 class Event(Enum):
-    """StockDataApiAbciApp Events"""
+    """AlprinaLlmAbciApp Events"""
 
     DONE = "done"
     NO_MAJORITY = "no_majority"
@@ -62,108 +60,54 @@ class SynchronizedData(BaseSynchronizedData):
         return CollectionRound.deserialize_collection(serialized)
 
     @property
-    def hello_data(self) -> Optional[str]:
+    def alprina_llm(self) -> Optional[str]:
         """Get the hello_data."""
         return self.db.get("hello_data", None)
 
     @property
-    def participant_to_hello_round(self) -> DeserializedCollection:
-        """Get the participants to the hello round."""
-        return self._get_deserialized("participant_to_hello_round")
-
-    @property
-    def search_alpaca_historical_data(self) -> Optional[str]:
-        """Get the hello_data."""
-        return self.db.get("hello_data", None)
-
-    @property
-    def participant_to_alpaca_historical_data_round(self) -> DeserializedCollection:
-        """Get the participants to the hello round."""
-        return self._get_deserialized("participant_to_hello_round")
-
-    @property
-    def search_polygon_sentiment_analysis(self) -> Optional[str]:
-        """Get the hello_data."""
-        return self.db.get("hello_data", None)
-
-    @property
-    def participant_to_polygon_sentiment_analysis_round(self) -> DeserializedCollection:
+    def participant_to_alprina_llm(self) -> DeserializedCollection:
         """Get the participants to the hello round."""
         return self._get_deserialized("participant_to_hello_round")
 
 
-class HelloRound(CollectSameUntilThresholdRound):
-    """HelloRound"""
+class PromptLlmRound(CollectSameUntilThresholdRound):
+    """PromptLlmRound"""
 
-    payload_class = HelloPayload
+    payload_class = PromptLlmPayload
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
     no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.participant_to_hello_round)
-    selection_key = get_name(SynchronizedData.hello_data)
-
-    # Event.ROUND_TIMEOUT  # this needs to be mentioned for static checkers
+    collection_key = get_name(SynchronizedData.alprina_llm)
+    selection_key = get_name(SynchronizedData.participant_to_alprina_llm)
 
 
-class CollectAlpacaHistoricalDataRound(CollectSameUntilThresholdRound):
-    """CollectAlpacaHistoricalDataRound"""
-
-    payload_class = CollectAlpacaHistoricalDataPayload
-    synchronized_data_class = SynchronizedData
-    done_event = Event.DONE
-    no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.search_alpaca_historical_data)
-    selection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
+class FinishedPromptLlmRound(DegenerateRound):
+    """FinishedPromptLlmRound"""
 
 
-class CollectPolygonSentimentAnalysisRound(CollectSameUntilThresholdRound):
-    """CollectPolygonSentimentAnalysisRound"""
+class AlprinaLlmAbciApp(AbciApp[Event]):
+    """AlprinaLlmAbciApp"""
 
-    payload_class = CollectPolygonSentimentAnalysisPayload
-    synchronized_data_class = SynchronizedData
-    done_event = Event.DONE
-    no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.search_polygon_sentiment_analysis)
-    selection_key = get_name(SynchronizedData.participant_to_polygon_sentiment_analysis_round)
-
-
-class FinishedHelloRound(DegenerateRound):
-    """FinishedHelloRound"""
-
-
-class StockDataApiAbciApp(AbciApp[Event]):
-    """StockDataApiAbciApp"""
-
-    initial_round_cls: AppState = HelloRound
+    initial_round_cls: AppState = PromptLlmRound
     initial_states: Set[AppState] = {
-        HelloRound,
+        PromptLlmRound,
     }
     transition_function: AbciAppTransitionFunction = {
-        HelloRound: {
-            Event.NO_MAJORITY: HelloRound,
-            Event.ROUND_TIMEOUT: HelloRound,
-            Event.DONE: CollectAlpacaHistoricalDataRound,
+        PromptLlmRound: {
+            Event.NO_MAJORITY: PromptLlmRound,
+            Event.ROUND_TIMEOUT: PromptLlmRound,
+            Event.DONE: FinishedPromptLlmRound,
         },
-        CollectAlpacaHistoricalDataRound: {
-            Event.NO_MAJORITY: CollectAlpacaHistoricalDataRound,
-            Event.ROUND_TIMEOUT: CollectAlpacaHistoricalDataRound,
-            Event.DONE: CollectPolygonSentimentAnalysisRound,
-        },
-        CollectPolygonSentimentAnalysisRound: {
-            Event.NO_MAJORITY: CollectPolygonSentimentAnalysisRound,
-            Event.ROUND_TIMEOUT: CollectPolygonSentimentAnalysisRound,
-            Event.DONE: FinishedHelloRound,
-        },
-        FinishedHelloRound: {},
+        FinishedPromptLlmRound: {},
     }
     final_states: Set[AppState] = {
-        FinishedHelloRound,
+        FinishedPromptLlmRound,
     }
     event_to_timeout: EventToTimeout = {}
     cross_period_persisted_keys: FrozenSet[str] = frozenset()
     db_pre_conditions: Dict[AppState, Set[str]] = {
-        HelloRound: set(),
+        PromptLlmRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
-        FinishedHelloRound: set(),
+        FinishedPromptLlmRound: set(),
     }

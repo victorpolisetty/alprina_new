@@ -2,19 +2,19 @@ name: stock_data_api_abci
 author: victorpolisetty
 version: 0.1.0
 type: skill
-description: A hello skill.
+description: A stock data api collection skill.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeigr3e3tnk4ptncydqkfahfmrsjpkrffaypmgyu4f2ndi5qnno67ye
-  behaviours/base.py: bafybeibyjvhyb65x3r4epgcygwmgg2lxe3uukytgba4ityb62ayxsjbhe4
-  behaviours/collect_alpaca_data.py: bafybeic6mgoioqseg5dm7hgegsxtxzshk3uapvj7rzav6etlrjimu7qeci
-  behaviours/collect_polygon_sentiment_analysis.py: bafybeibfiw44o2eh66hogel7iychmg2rjzci6r2ck2onq7wlpbwjrn434u
-  behaviours/hello.py: bafybeigzqtc7swbk75nbc6pd6betqagdihyjs2pw3smevew7tvp5n5j6gq
+  behaviours/base.py: bafybeieakh7pz4gjv7fxrxdyacrydfrisx3quezxn6hfqeeocoxck3xvam
+  behaviours/collect_alpaca_data.py: bafybeics3gilo2q23oc5b6k6kz2mon7t6k4izli3ionyeqafnjgnjndvcy
+  behaviours/collect_polygon_sentiment_analysis.py: bafybeih6gzgrtdnzbdbv2gwknoppf4f4ehgs7s54m7rzgn4peizxism5vm
+  behaviours/hello.py: bafybeidfv5jtpt5jl5ahpjqm4eb5wn6tzbdkawbp74hfmp7ej34fs3wk5m
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
   fsm_specification.yaml: bafybeihzfwzqcqsanii4xg4okzyak3u6to3tvqhk2u33quwknrtdyd4mti
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
-  models.py: bafybeia5buowp2xovgvyayhhxhplc7quq4xna72zblsn76zuktpcf25ugu
+  models.py: bafybeiafb6rappbr57fw2kzspdeg4tyrs6ihexua2zeqaih2w2bife5tgq
   payloads.py: bafybeibfs5a6ink2cjiruivy3v7xcm4y4q5r2alpucv7smkrr4xhqoezq4
   round_behaviour.py: bafybeiat66qdduuupzh2s2wg77fjsnhp2pzvkmadahvybsk35vq7tzwnku
   rounds.py: bafybeiecrxsxksmvxav47mqubeqlisbt6mlzf3vpfap6zxte6fez52jn34

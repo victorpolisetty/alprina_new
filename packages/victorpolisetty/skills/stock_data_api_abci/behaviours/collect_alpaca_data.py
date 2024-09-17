@@ -1,13 +1,14 @@
 from typing import Generator, Dict, Any, Optional
 
-from alprina_agent.vendor.victorpolisetty.skills.stock_data_api_abci.behaviours.base import HelloBaseBehaviour
 from packages.valory.skills.abstract_round_abci.io_.store import SupportedFiletype
+from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.base import StockDataApiBaseBehaviour
 from packages.victorpolisetty.skills.stock_data_api_abci.payloads import CollectAlpacaHistoricalDataPayload
 from packages.victorpolisetty.skills.stock_data_api_abci.rounds import CollectAlpacaHistoricalDataRound
 
 FILENAME = "usage"
 
-class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
+
+class CollectAlpacaHistoricalDataBehaviour(StockDataApiBaseBehaviour):  # pylint: disable=too-many-ancestors
     """Behaviour to observe and collect Alpaca historical data."""
 
     matching_round = CollectAlpacaHistoricalDataRound
@@ -53,6 +54,7 @@ class CollectAlpacaHistoricalDataBehaviour(HelloBaseBehaviour):  # pylint: disab
             self.context.logger.info(
                 f"Got historical data from {self.context.alpaca_response.api_id}: {historical_data}"
             )
+            print(type(historical_data))
             # TODO: Make readable in LLM abci
             historical_data_tsla_readable = self.make_response_readable(historical_data)
             print("The readable data is: ")

@@ -20,6 +20,7 @@
 """This package contains round behaviours of AlprinaSkillAbciApp."""
 
 import packages.victorpolisetty.skills.stock_data_api_abci.rounds as StockDataApiAbci
+import packages.victorpolisetty.skills.alprina_llm_abci.rounds as AlprinaLlmAbci
 import packages.valory.skills.registration_abci.rounds as RegistrationAbci
 import packages.valory.skills.reset_pause_abci.rounds as ResetAndPauseAbci
 from packages.valory.skills.abstract_round_abci.abci_app_chain import (
@@ -36,7 +37,8 @@ from packages.valory.skills.termination_abci.rounds import (
 
 abci_app_transition_mapping: AbciAppTransitionMapping = {
     RegistrationAbci.FinishedRegistrationRound: StockDataApiAbci.HelloRound,
-    StockDataApiAbci.FinishedHelloRound: ResetAndPauseAbci.ResetAndPauseRound,
+    StockDataApiAbci.FinishedHelloRound: AlprinaLlmAbci.PromptLlmRound,
+    AlprinaLlmAbci.FinishedPromptLlmRound: ResetAndPauseAbci.ResetAndPauseRound,
     ResetAndPauseAbci.FinishedResetAndPauseRound: StockDataApiAbci.HelloRound,
     ResetAndPauseAbci.FinishedResetAndPauseErrorRound: ResetAndPauseAbci.ResetAndPauseRound,
 }
@@ -51,6 +53,7 @@ AlprinaSkillAbciApp = chain(
     (
         RegistrationAbci.AgentRegistrationAbciApp,
         StockDataApiAbci.StockDataApiAbciApp,
+        AlprinaLlmAbci.AlprinaLlmAbciApp,
         ResetAndPauseAbci.ResetPauseAbciApp,
     ),
     abci_app_transition_mapping,

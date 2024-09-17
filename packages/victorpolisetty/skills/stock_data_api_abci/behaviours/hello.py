@@ -21,13 +21,13 @@
 
 from typing import Generator, Type
 
-from alprina_agent.vendor.victorpolisetty.skills.stock_data_api_abci.behaviours.base import HelloBaseBehaviour
 from packages.valory.skills.abstract_round_abci.base import AbstractRound
+from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.base import StockDataApiBaseBehaviour
 from packages.victorpolisetty.skills.stock_data_api_abci.payloads import HelloPayload
 from packages.victorpolisetty.skills.stock_data_api_abci.rounds import HelloRound
 
 
-class HelloBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
+class HelloBehaviour(StockDataApiBaseBehaviour):  # pylint: disable=too-many-ancestors
     """HelloBehaviour"""
 
     matching_round: Type[AbstractRound] = HelloRound

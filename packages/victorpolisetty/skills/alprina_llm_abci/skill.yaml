@@ -1,34 +1,31 @@
-name: scraper_abci
-author: jhehemann
+name: alprina_llm_abci
+author: victorpolisetty
 version: 0.1.0
 type: skill
-description: A scraper abci skill.
+description: A skill for the Alprina LLM ABCI application.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeieuzjfdllnkpuxuktqzikdbq55gqrgsue2h42a66k6a22mp3ec4zy
-  behaviours/base.py: bafybeigq4w36szut2ikqrz6szzs62ip5xtrhcneyphaccrhb4mmccxrmea
-  behaviours/hello.py: bafybeif3o5ncbklo67gdztd464jaz757fkdbt63tqazv3sc6fugvmvvehm
-  behaviours/process_html.py: bafybeiehjyhkqwnp7ivvyffo5lldrlunfhcwhrmq6wlg3555qdvfy4ypt4
-  behaviours/search_engine.py: bafybeigzoefkc4wrnwoguf677rczc7sdyw3xe722nrswxf5eqchskwlevu
-  behaviours/web_scrape.py: bafybeibznio2uowswp2s4axx4bblm3m2c6oy6v5qsekmpxfcvc4scptz2q
+  __init__.py: bafybeib6otcjpqcls26idvvgyu2bjuun5slxhar4iwzahrmyfdzku37jpi
+  behaviours/base.py: bafybeicxa2gyo4icqkvcykgv3v5owisbhqzrpeyexhvprvua7zmxlzk2vu
+  behaviours/prompt_llm.py: bafybeigslqdimxos2gtv2itimdx7iw2xt4je6dp7kzvmqrmzu4346h7ewa
   dialogues.py: bafybeidhxqhvzknq6rd5nan4xe2ff3f3p67uo5422kwrq4cegerynspqpa
-  fsm_specification.yaml: bafybeicarbpkve5vtlnv5qtimie64qz52jzzjm7o75zf3gviblklebueae
+  fsm_specification.yaml: bafybeibnizkmpnily75yukowq7cqgj36hfpxb3f3wvzcmnejuobc4ox3t4
   handlers.py: bafybeidxljtgllpkpnoq562laznbqxmna7fn4sxrhgycapu3w4giefbdwm
-  models.py: bafybeid73bcqox3r6ycz3erj4xq5px4pc3tkppeu3ppaknypyyedu27zwu
-  payloads.py: bafybeicro2n6bxfqt6lskqewa3vjzxfseo26prlnflpopakpljqgcjntim
-  round_behaviour.py: bafybeida35cnu5ahtieuntr4nuwtvk3juv7ouguij7f2enareh7vsmqaku
-  rounds.py: bafybeibekev7apgm26s6k6365tcuknrwyax7emmu5bszyekwi35hyeusne
+  models.py: bafybeiaviz6kgxla6orti6t4wkcqvmtw5hjko4lmyzbfbpbuf3ta2ifzri
+  payloads.py: bafybeihyxm665w5ldewbhmvx7krs2sso6wwmxcmlg336x3y656ofl6t5gy
+  round_behaviour.py: bafybeih4u6c6cfzzsv5jwmalgutlyty5wrl725poa5w3cbbeznd5labmxu
+  rounds.py: bafybeicie6hqnipdhqe3rivtgbm6qffbhd43bd5ynrwbbu4vqktbj3jikm
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
 protocols: []
 skills:
-  - valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
+- valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
 behaviours:
   main:
     args: {}
-    class_name: ScraperRoundBehaviour
+    class_name: AlprinaLlmRoundBehaviour
 handlers:
   abci:
     args: {}
@@ -57,7 +54,7 @@ models:
     class_name: AbciDialogues
   benchmark_tool:
     args:
-      log_dir: /logs
+      log_dir: /tmp
     class_name: BenchmarkTool
   contract_api_dialogues:
     args: {}
@@ -73,8 +70,6 @@ models:
     class_name: LedgerApiDialogues
   params:
     args:
-      input_query: Search for relevant information about current topics of interest.
-      api_keys_json: []
       cleanup_history_depth: 1
       cleanup_history_depth_current: null
       drand_public_key: 868f005eb8e6e4ca0a47c8a77ceaa5309a47978a7c71bc5cce96366b5d7a569937c529eeda66c7293784a9402801af31
@@ -92,7 +87,7 @@ models:
             max_bytes: '1048576'
           validator:
             pub_key_types:
-              - ed25519
+            - ed25519
           version: {}
         genesis_time: '2022-05-20T16:00:21.735122717Z'
         voting_power: '10'
@@ -110,11 +105,11 @@ models:
       retry_attempts: 400
       retry_timeout: 3
       round_timeout_seconds: 30.0
-      service_id: researcher
+      service_id: alprina
       service_registry_address: null
       setup:
         all_participants:
-          - '0x0000000000000000000000000000000000000000'
+        - '0x0000000000000000000000000000000000000000'
         consensus_threshold: null
         safe_contract_address: '0x0000000000000000000000000000000000000000'
       share_tm_config_on_startup: false
@@ -128,6 +123,7 @@ models:
       use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
+      api_keys_json: []
       polling_interval: 30.0
       agent_index: 0
       num_agents: 1
@@ -140,31 +136,56 @@ models:
       light_slash_unit_amount: 5000000000000000
       serious_slash_unit_amount: 8000000000000000
       service_endpoint_base: https://demo.staging.autonolas.tech/
-    class_name: ScraperParams
-  search_engine_response:
+    class_name: Params
+  alpaca_response:
     args:
-      api_id: search_engine_response
+      api_id: alpaca_response
+      headers:
+        Content-Type: application/json
+        APCA-API-KEY-ID: null
+        APCA-API-SECRET-KEY: null
+      method: GET
+      parameters:
+      - symbols: TSLA
+      - timeframe: 1Week
+      - start: '2022-01-01'
+      - end: '2023-02-02'
+      - limit: 5
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://data.alpaca.markets/v2/stocks/bars
+    class_name: AlpacaResponseSpecs
+  polygon_response:
+    args:
+      api_id: polygon_response
       headers:
         Content-Type: application/json
       method: GET
-      parameters: {}
+      parameters:
+      - ticker: TSLA
+      - limit: 2
       response_key: null
       response_type: dict
       retries: 5
-      url: https://www.googleapis.com/customsearch/v1
-    class_name: SearchEngineResponseSpecs
-  web_scrape_response:
+      url: https://api.polygon.io/v2/reference/news
+    class_name: PolygonResponseSpecs
+  chatgpt_response:
     args:
-      api_id: web_scrape_response
+      api_id: chatgpt_response
       headers:
-        Content-Type: text/html
+        Content-Type: application/json
+        Authorization: null
       method: GET
-      parameters: {}
+      parameters:
+      - model: gpt-4o-mini
+      - messages: []
+      - temperature: 0.7
       response_key: null
       response_type: dict
       retries: 5
-      url: ''
-    class_name: WebScrapeResponseSpecs
+      url: https://api.openai.com/v1/chat/completions
+    class_name: ChatGptResponseSpecs
   requests:
     args: {}
     class_name: Requests
@@ -177,14 +198,6 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies:
-  readability-lxml:
-    version: ==0.8.1
-  lxml:
-    version: ==5.1.0
-  markdownify:
-    version: ==0.12.1
-  beautifulsoup4:
-    version: ==4.12.3
+dependencies: {}
 is_abstract: true
 customs: []

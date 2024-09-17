@@ -1,14 +1,14 @@
 from typing import Generator, Dict, Any, Optional
 
-from alprina_agent.vendor.victorpolisetty.skills.stock_data_api_abci.behaviours.base import HelloBaseBehaviour
 from packages.valory.skills.abstract_round_abci.io_.store import SupportedFiletype
+from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.base import StockDataApiBaseBehaviour
 from packages.victorpolisetty.skills.stock_data_api_abci.payloads import CollectPolygonSentimentAnalysisPayload
 from packages.victorpolisetty.skills.stock_data_api_abci.rounds import CollectPolygonSentimentAnalysisRound
 
 FILENAME = "usage"
 
 
-class CollectPolygonSentimentAnalysisBehaviour(HelloBaseBehaviour):  # pylint: disable=too-many-ancestors
+class CollectPolygonSentimentAnalysisBehaviour(StockDataApiBaseBehaviour):  # pylint: disable=too-many-ancestors
     """Behaviour to observe and collect Polygon sentiment data."""
 
     matching_round = CollectPolygonSentimentAnalysisRound

@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the base behaviour for the 'scraper_abci' skill."""
+"""This module contains the base behaviour for the 'stock_data_api_abci' skill."""
 
 from abc import ABC
 from typing import cast
@@ -31,7 +31,7 @@ from packages.victorpolisetty.skills.stock_data_api_abci.rounds import (
 )
 
 
-class HelloBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
+class StockDataApiBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
     """Base behaviour for the stock_data_api_abci skill."""
 
     @property

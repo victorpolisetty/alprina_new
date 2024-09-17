@@ -17,28 +17,22 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This package contains round behaviours of StockDataApiAbciApp."""
+"""This package contains round behaviours of AlprinaLlmAbciApp."""
 
 from typing import Set, Type
-from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.hello import HelloBehaviour
-from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.collect_alpaca_data import CollectAlpacaHistoricalDataBehaviour
-from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.collect_polygon_sentiment_analysis import CollectPolygonSentimentAnalysisBehaviour
-
-
+from packages.victorpolisetty.skills.alprina_llm_abci.behaviours.prompt_llm import PromptLlmBehaviour
+from packages.victorpolisetty.skills.alprina_llm_abci.rounds import AlprinaLlmAbciApp
 from packages.valory.skills.abstract_round_abci.behaviours import (
     AbstractRoundBehaviour,
     BaseBehaviour,
 )
-from packages.victorpolisetty.skills.stock_data_api_abci.rounds import StockDataApiAbciApp
 
 
-class StockDataApiRoundBehaviour(AbstractRoundBehaviour):
-    """StockDataApiBehaviour"""
+class AlprinaLlmRoundBehaviour(AbstractRoundBehaviour):
+    """AlprinaLlmRoundBehaviour"""
 
-    initial_behaviour_cls = HelloBehaviour
-    abci_app_cls = StockDataApiAbciApp  # type: ignore
+    initial_behaviour_cls = PromptLlmBehaviour
+    abci_app_cls = AlprinaLlmAbciApp  # type: ignore
     behaviours: Set[Type[BaseBehaviour]] = [  # type: ignore
-        HelloBehaviour,
-        CollectAlpacaHistoricalDataBehaviour,
-        CollectPolygonSentimentAnalysisBehaviour,
+        PromptLlmBehaviour,
     ]

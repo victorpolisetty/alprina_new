@@ -13,6 +13,7 @@ states:
 - HelloRound
 - CollectAlpacaHistoricalDataRound
 - CollectPolygonSentimentAnalysisRound
+- PromptLlmRound
 - RegistrationRound
 - RegistrationStartupRound
 - ResetAndPauseRound
@@ -23,9 +24,12 @@ transition_func:
     (CollectAlpacaHistoricalDataRound, DONE): CollectPolygonSentimentAnalysisRound
     (CollectAlpacaHistoricalDataRound, NO_MAJORITY): CollectAlpacaHistoricalDataRound
     (CollectAlpacaHistoricalDataRound, ROUND_TIMEOUT): CollectAlpacaHistoricalDataRound
-    (CollectPolygonSentimentAnalysisRound, DONE): ResetAndPauseRound
+    (CollectPolygonSentimentAnalysisRound, DONE): PromptLlmRound
     (CollectPolygonSentimentAnalysisRound, NO_MAJORITY): CollectPolygonSentimentAnalysisRound
     (CollectPolygonSentimentAnalysisRound, ROUND_TIMEOUT): CollectPolygonSentimentAnalysisRound
+    (PromptLlmRound, DONE): ResetAndPauseRound
+    (PromptLlmRound, NO_MAJORITY): PromptLlmRound
+    (PromptLlmRound, ROUND_TIMEOUT): PromptLlmRound
     (RegistrationRound, DONE): HelloRound
     (RegistrationRound, NO_MAJORITY): RegistrationRound
     (RegistrationStartupRound, DONE): HelloRound

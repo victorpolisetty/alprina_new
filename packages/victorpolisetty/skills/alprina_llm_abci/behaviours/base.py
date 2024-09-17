@@ -25,14 +25,14 @@ from typing import cast
 from packages.valory.skills.abstract_round_abci.behaviours import (
     BaseBehaviour,
 )
-from packages.victorpolisetty.skills.stock_data_api_abci.models import Params, SharedState
-from packages.victorpolisetty.skills.stock_data_api_abci.rounds import (
+from packages.victorpolisetty.skills.alprina_llm_abci.models import AlprinaLlmParams, SharedState
+from packages.victorpolisetty.skills.alprina_llm_abci.rounds import (
     SynchronizedData,
 )
 
 
-class HelloBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
-    """Base behaviour for the stock_data_api_abci skill."""
+class AlprinaLlmBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancestors
+    """Base behaviour for the alprina_llm_abci skill."""
 
     @property
     def synchronized_data(self) -> SynchronizedData:
@@ -40,9 +40,9 @@ class HelloBaseBehaviour(BaseBehaviour, ABC):  # pylint: disable=too-many-ancest
         return cast(SynchronizedData, super().synchronized_data)
 
     @property
-    def params(self) -> Params:
+    def params(self) -> AlprinaLlmParams:
         """Return the params."""
-        return cast(Params, super().params)
+        return cast(AlprinaLlmParams, super().params)
 
     @property
     def local_state(self) -> SharedState:

@@ -48,8 +48,6 @@ class SharedState(BaseSharedState):
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
-
-
 #Params = BaseParams
 
 
@@ -134,7 +132,6 @@ class AlpacaResponseSpecs(ApiSpecs):
         }
 
 
-# TODO: Fix this
 class PolygonResponseSpecs(ApiSpecs):
     """A model that wraps ApiSpecs for the Polygon API response specifications."""
 

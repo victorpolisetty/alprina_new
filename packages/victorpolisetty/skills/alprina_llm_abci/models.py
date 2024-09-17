@@ -19,11 +19,8 @@
 
 """This module contains the shared state for the abci skill of ScraperAbciApp."""
 
-import json
-from dataclasses import dataclass
-
-from packages.victorpolisetty.skills.stock_data_api_abci.rounds import StockDataApiAbciApp
 from packages.valory.skills.abstract_round_abci.models import BaseParams
+from packages.victorpolisetty.skills.alprina_llm_abci.rounds import AlprinaLlmAbciApp
 from packages.valory.skills.abstract_round_abci.models import (
     BenchmarkTool as BaseBenchmarkTool,
 )
@@ -31,6 +28,7 @@ from packages.valory.skills.abstract_round_abci.models import Requests as BaseRe
 from packages.valory.skills.abstract_round_abci.models import (
     SharedState as BaseSharedState,
 )
+from packages.valory.skills.abstract_round_abci.models import ApiSpecs
 from collections import defaultdict
 from typing import Any, Dict, List, cast
 
@@ -41,16 +39,14 @@ from aea.skills.base import Model
 class SharedState(BaseSharedState):
     """Keep the current shared state of the skill."""
 
-    abci_app_cls = StockDataApiAbciApp
+    abci_app_cls = AlprinaLlmAbciApp
 
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
-
-
 #Params = BaseParams
 
-class DocumentsManagerParams(BaseParams):
+class AlprinaLlmParams(BaseParams):
     """A model to represent params for multiple abci apps."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -59,6 +55,8 @@ class DocumentsManagerParams(BaseParams):
         # self.api_keys: Dict = self._nested_list_todict_workaround(
         #     kwargs, "api_keys_json"
         # )
+
+
 
         #self.input_query = kwargs.get("input_query", None)
         enforce(self.input_query is not None, "input_query must be set!")
@@ -91,3 +89,25 @@ class DocumentsManagerParams(BaseParams):
         if len(values) == 0:
             raise ValueError(f"No {key} specified!")
         return {value[0]: value[1] for value in values}
+
+
+class ChatGptResponseSpecs(ApiSpecs):
+    """A model that wraps ApiSpecs for the ChatGpt API response specifications."""
+
+    def get_spec(self) -> Dict[str, Any]:
+        """Return the specifications for the Alpaca API request."""
+        # Access the API keys loaded in Params
+        api_key_id = self.context.params.api_keys["CHAT-GPT-API-KEY"]
+        return {
+            "method": "GET",
+            "url": "https://api.openai.com/v1/chat/completions",
+            "headers": {
+                "Authorization": "Bearer " + api_key_id,
+                "accept": "application/json"
+            },
+            "parameters": {
+                "model": "gpt-4o-mini",
+                "messages": [{"role": "user", "content": "Say this is a test!"}],
+                "temperature": 0.7
+            }
+        }

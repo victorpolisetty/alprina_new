@@ -17,7 +17,7 @@
 #
 # ------------------------------------------------------------------------------
 
-"""This module contains the transaction payloads of the ScraperAbciApp."""
+"""This module contains the transaction payloads of the AlprinaLlmAbciApp."""
 
 from dataclasses import dataclass
 
@@ -25,13 +25,7 @@ from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
 
 
 @dataclass(frozen=True)
-class UpdateDocumentsPayload(BaseTxPayload):
-    """Represent a transaction payload for the UpdateDocumentsRound."""
+class PromptLlmPayload(BaseTxPayload):
+    """Represent a transaction payload for the PromptLlmRound."""
 
-    content: str
-
-@dataclass(frozen=True)
-class SearchEnginePayload(BaseTxPayload):
-    """Represent a transaction payload for the SearchEngineRound."""
-
-    content: str
+    ipfs_hash: str
