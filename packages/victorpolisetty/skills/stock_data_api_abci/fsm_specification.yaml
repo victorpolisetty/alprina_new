@@ -16,6 +16,9 @@ transition_func:
     (HelloRound, DONE): CollectAlpacaHistoricalDataRound
     (HelloRound, NO_MAJORITY): HelloRound
     (HelloRound, ROUND_TIMEOUT): HelloRound
-    (CollectAlpacaHistoricalDataRound, DONE): FinishedHelloRound
+    (CollectAlpacaHistoricalDataRound, DONE): CollectPolygonSentimentAnalysisRound
     (CollectAlpacaHistoricalDataRound, NO_MAJORITY): CollectAlpacaHistoricalDataRound
     (CollectAlpacaHistoricalDataRound, ROUND_TIMEOUT): CollectAlpacaHistoricalDataRound
+    (CollectPolygonSentimentAnalysisRound, DONE): FinishedHelloRound
+    (CollectPolygonSentimentAnalysisRound, NO_MAJORITY): CollectPolygonSentimentAnalysisRound
+    (CollectPolygonSentimentAnalysisRound, ROUND_TIMEOUT): CollectPolygonSentimentAnalysisRound

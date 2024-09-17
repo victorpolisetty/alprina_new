@@ -19,7 +19,8 @@
 
 """This module contains the shared state for the abci skill of AlprinaSkillAbciApp."""
 from packages.victorpolisetty.skills.stock_data_api_abci.models import (
-    AlpacaResponseSpecs as AlprinaAlpacaResponseSpecsResponseSpecs
+    AlpacaResponseSpecs as AlprinaAlpacaResponseSpecsResponseSpecs,
+    PolygonResponseSpecs as AlprinaPolygonResponseSpecsResponseSpecs,
 )
 from packages.victorpolisetty.skills.stock_data_api_abci.models import Params as StockDataApiParams
 from packages.victorpolisetty.skills.stock_data_api_abci.models import SharedState as BaseSharedState
@@ -38,6 +39,7 @@ from packages.valory.skills.termination_abci.models import TerminationParams
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
 AlpacaResponseSpecs = AlprinaAlpacaResponseSpecsResponseSpecs
+PolygonResponseSpecs = AlprinaPolygonResponseSpecsResponseSpecs
 
 RandomnessApi = BaseRandomnessApi
 

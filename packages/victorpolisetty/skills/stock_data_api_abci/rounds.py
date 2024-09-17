@@ -24,7 +24,8 @@ from typing import Dict, FrozenSet, Optional, Set
 
 from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
     HelloPayload,
-    CollectAlpacaHistoricalDataPayload
+    CollectAlpacaHistoricalDataPayload,
+    CollectPolygonSentimentAnalysisPayload,
 )
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
@@ -80,6 +81,16 @@ class SynchronizedData(BaseSynchronizedData):
         """Get the participants to the hello round."""
         return self._get_deserialized("participant_to_hello_round")
 
+    @property
+    def search_polygon_sentiment_analysis(self) -> Optional[str]:
+        """Get the hello_data."""
+        return self.db.get("hello_data", None)
+
+    @property
+    def participant_to_polygon_sentiment_analysis_round(self) -> DeserializedCollection:
+        """Get the participants to the hello round."""
+        return self._get_deserialized("participant_to_hello_round")
+
 
 class HelloRound(CollectSameUntilThresholdRound):
     """HelloRound"""
@@ -105,6 +116,17 @@ class CollectAlpacaHistoricalDataRound(CollectSameUntilThresholdRound):
     selection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
 
 
+class CollectPolygonSentimentAnalysisRound(CollectSameUntilThresholdRound):
+    """CollectPolygonSentimentAnalysisRound"""
+
+    payload_class = CollectPolygonSentimentAnalysisPayload
+    synchronized_data_class = SynchronizedData
+    done_event = Event.DONE
+    no_majority_event = Event.NO_MAJORITY
+    collection_key = get_name(SynchronizedData.search_polygon_sentiment_analysis)
+    selection_key = get_name(SynchronizedData.participant_to_polygon_sentiment_analysis_round)
+
+
 class FinishedHelloRound(DegenerateRound):
     """FinishedHelloRound"""
 
@@ -125,6 +147,11 @@ class StockDataApiAbciApp(AbciApp[Event]):
         CollectAlpacaHistoricalDataRound: {
             Event.NO_MAJORITY: CollectAlpacaHistoricalDataRound,
             Event.ROUND_TIMEOUT: CollectAlpacaHistoricalDataRound,
+            Event.DONE: CollectPolygonSentimentAnalysisRound,
+        },
+        CollectPolygonSentimentAnalysisRound: {
+            Event.NO_MAJORITY: CollectPolygonSentimentAnalysisRound,
+            Event.ROUND_TIMEOUT: CollectPolygonSentimentAnalysisRound,
             Event.DONE: FinishedHelloRound,
         },
         FinishedHelloRound: {},

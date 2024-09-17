@@ -132,3 +132,25 @@ class AlpacaResponseSpecs(ApiSpecs):
                 "limit": 5
             }  # Add any necessary query parameters here
         }
+
+
+# TODO: Fix this
+class PolygonResponseSpecs(ApiSpecs):
+    """A model that wraps ApiSpecs for the Polygon API response specifications."""
+
+    def get_spec(self) -> Dict[str, Any]:
+        """Return the specifications for the Alpaca API request."""
+        # Access the API keys loaded in Params
+        api_key = self.context.params.api_keys["POLYGON-API-KEY"]
+        return {
+            "method": "GET",
+            "url": "https://api.polygon.io/v2/reference/news",
+            "headers": {
+                "accept": "application/json"
+            },
+            "parameters": {
+                "apiKey": api_key,
+                "ticker": "TSLA",
+                "limit": 2,
+            }
+        }

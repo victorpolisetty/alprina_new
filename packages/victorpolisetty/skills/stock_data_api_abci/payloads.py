@@ -36,3 +36,10 @@ class CollectAlpacaHistoricalDataPayload(BaseTxPayload):
     """Represent a transaction payload for the CollectAlpacaHistoricalDataRound."""
 
     ipfs_hash: str
+
+
+@dataclass(frozen=True)
+class CollectPolygonSentimentAnalysisPayload(BaseTxPayload):
+    """Represent a transaction payload for the CollectAlpacaHistoricalDataRound."""
+
+    ipfs_hash: str

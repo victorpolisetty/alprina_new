@@ -9,10 +9,10 @@ fingerprint:
   __init__.py: bafybeifgcv6yxiptwtim5kmpg3kmfwctkz7tatqw2vtffpdy4wsmymzkzu
   behaviours.py: bafybeidzvfb2a5cm42hl6yyrahdrg6tmlft7lglfgg7o22vpbc2nbwchje
   composition.py: bafybeiebjja6mvyfblv6thwf2ezyoyl3mqjjzcreli6m635ckhy4ew2ega
-  dialogues.py: bafybeict3vkqfezgys6i6z54b26as62upcet2ju3un5y7cqlxfnr75lgjq
-  fsm_specification.yaml: bafybeidlnwygr3dn56f7ud7boonadopfpcv4cp7pz76s2s76gijqwzzxhm
+  dialogues.py: bafybeiameeuogvqfs5geuy4qeiiguaqht34if2ve5vle55aqp7ur57mdxm
+  fsm_specification.yaml: bafybeiaelvxyojcpzcnit7l5t6dfq26x7b2vzc5asbnwhxa6fnxxruyddm
   handlers.py: bafybeihd3ahdzqql5yw5a54yw6rtjpzimb5ldavo2lc47dlnvsvw2tlkui
-  models.py: bafybeiaya445di6gpeymlsze4brp7futbfqbw2cckqksm2zewzlbjthhpe
+  models.py: bafybeiedqigjmuco2w4hhro6aguiedscibehynqram7xmrklw6vttedq7i
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -22,7 +22,7 @@ skills:
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeidiexjtcc3twk3lfdv2sdlvfv4fbch4djzjc4sfeznjy6bx5iw7d4
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeigzgnv354l6xgoyoho7ipkoapfvxdhkzkuxifu3e5rrvuhqh6ppbi
 - valory/transaction_settlement_abci:0.1.0:bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq
 behaviours:
   main:
@@ -167,6 +167,18 @@ models:
       retries: 5
       url: https://data.alpaca.markets/v2/stocks/meta/exchanges
     class_name: AlpacaResponseSpecs
+  polygon_response:
+    args:
+      api_id: polygon_response
+      headers:
+        Content-Type: application/json
+      method: GET
+      parameters: {}
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://api.polygon.io/v2/reference/news
+    class_name: PolygonResponseSpecs
   requests:
     args: {}
     class_name: Requests
