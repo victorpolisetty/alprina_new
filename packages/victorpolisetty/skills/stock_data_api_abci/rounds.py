@@ -72,24 +72,24 @@ class SynchronizedData(BaseSynchronizedData):
         return self._get_deserialized("participant_to_hello_round")
 
     @property
-    def search_alpaca_historical_data(self) -> Optional[str]:
-        """Get the hello_data."""
-        return self.db.get("hello_data", None)
+    def ipfs_hash_alpaca(self) -> Optional[str]:
+        """Get the ipfs_hash_alpaca."""
+        return self.db.get("ipfs_hash_alpaca", None)
 
     @property
     def participant_to_alpaca_historical_data_round(self) -> DeserializedCollection:
         """Get the participants to the hello round."""
-        return self._get_deserialized("participant_to_hello_round")
+        return self._get_deserialized("participant_to_alpaca_round")
 
     @property
-    def search_polygon_sentiment_analysis(self) -> Optional[str]:
-        """Get the hello_data."""
-        return self.db.get("hello_data", None)
+    def ipfs_hash_polygon(self) -> Optional[str]:
+        """Get the ipfs_hash_polygon."""
+        return self.db.get("ipfs_hash_polygon", None)
 
     @property
     def participant_to_polygon_sentiment_analysis_round(self) -> DeserializedCollection:
         """Get the participants to the hello round."""
-        return self._get_deserialized("participant_to_hello_round")
+        return self._get_deserialized("participant_to_polygon_round")
 
 
 class HelloRound(CollectSameUntilThresholdRound):
@@ -112,8 +112,8 @@ class CollectAlpacaHistoricalDataRound(CollectSameUntilThresholdRound):
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
     no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.search_alpaca_historical_data)
-    selection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
+    collection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
+    selection_key = get_name(SynchronizedData.ipfs_hash_alpaca)
 
 
 class CollectPolygonSentimentAnalysisRound(CollectSameUntilThresholdRound):
@@ -123,8 +123,8 @@ class CollectPolygonSentimentAnalysisRound(CollectSameUntilThresholdRound):
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
     no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.search_polygon_sentiment_analysis)
-    selection_key = get_name(SynchronizedData.participant_to_polygon_sentiment_analysis_round)
+    collection_key = get_name(SynchronizedData.participant_to_polygon_sentiment_analysis_round)
+    selection_key = get_name(SynchronizedData.ipfs_hash_polygon)
 
 
 class FinishedHelloRound(DegenerateRound):

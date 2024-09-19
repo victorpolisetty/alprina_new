@@ -22,8 +22,8 @@ skills:
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihbvryqocsa6re3dd6jtn6dslydxbbbwtvsbsvr7ue2nwasy5zwfy
-- victorpolisetty/alprina_llm_abci:0.1.0:bafybeih3rnzrul5gf5zrkh3je24gu5jzwrut3extrgkbnos36pyt4dsnly
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeiedfoeawuyftmscb3jgqxvgd7v2ra7cupzvc3jimoofmywmj2um7u
+- victorpolisetty/alprina_llm_abci:0.1.0:bafybeidreftkqddpftpfvnlw4bacazgxyakh525lpxsssymh5cadywgisa
 - valory/transaction_settlement_abci:0.1.0:bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq
 behaviours:
   main:
@@ -180,6 +180,18 @@ models:
       retries: 5
       url: https://api.polygon.io/v2/reference/news
     class_name: PolygonResponseSpecs
+  chatgpt_response:
+    args:
+      api_id: chatgpt_response
+      headers:
+        Content-Type: application/json
+      method: POST
+      parameters: {}
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://api.openai.com/v1/chat/completions
+    class_name: ChatGptResponseSpecs
   requests:
     args: {}
     class_name: Requests

@@ -95,17 +95,17 @@ class ChatGptResponseSpecs(ApiSpecs):
     """A model that wraps ApiSpecs for the ChatGpt API response specifications."""
 
     def get_spec(self) -> Dict[str, Any]:
-        """Return the specifications for the Alpaca API request."""
+        """Return the specifications for the ChatGpt API request."""
         # Access the API keys loaded in Params
         api_key_id = self.context.params.api_keys["CHAT-GPT-API-KEY"]
         return {
-            "method": "GET",
+            "method": "POST",
             "url": "https://api.openai.com/v1/chat/completions",
             "headers": {
-                "Authorization": "Bearer " + api_key_id,
-                "accept": "application/json"
+                "Authorization": 'Bearer ' + api_key_id,
+                "Content-Type": "application/json"
             },
-            "parameters": {
+            "body": {
                 "model": "gpt-4o-mini",
                 "messages": [{"role": "user", "content": "Say this is a test!"}],
                 "temperature": 0.7

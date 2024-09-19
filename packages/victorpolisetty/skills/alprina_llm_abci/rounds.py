@@ -60,6 +60,26 @@ class SynchronizedData(BaseSynchronizedData):
         return CollectionRound.deserialize_collection(serialized)
 
     @property
+    def ipfs_hash_alpaca(self) -> Optional[str]:
+        """Get the ipfs_hash_alpaca."""
+        return self.db.get("ipfs_hash_alpaca", None)
+
+    @property
+    def participant_to_alpaca_historical_data_round(self) -> DeserializedCollection:
+        """Get the participants to the hello round."""
+        return self._get_deserialized("participant_to_alpaca_round")
+
+    @property
+    def ipfs_hash_polygon(self) -> Optional[str]:
+        """Get the ipfs_hash_polygon."""
+        return self.db.get("ipfs_hash_polygon", None)
+
+    @property
+    def participant_to_polygon_sentiment_analysis_round(self) -> DeserializedCollection:
+        """Get the participants to the hello round."""
+        return self._get_deserialized("participant_to_polygon_round")
+
+    @property
     def alprina_llm(self) -> Optional[str]:
         """Get the hello_data."""
         return self.db.get("hello_data", None)

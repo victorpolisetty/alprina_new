@@ -31,9 +31,9 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeihat4giyc4bz6zopvahcj4iw53356pbtwfn7p4d5yflwly2qhahum
 - valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihbvryqocsa6re3dd6jtn6dslydxbbbwtvsbsvr7ue2nwasy5zwfy
-- victorpolisetty/alprina_llm_abci:0.1.0:bafybeih3rnzrul5gf5zrkh3je24gu5jzwrut3extrgkbnos36pyt4dsnly
-- victorpolisetty/alprina_abci:0.1.0:bafybeiemy3e3m2o7rfmnpc5prxrkb4kne5hr7eagzjdwlawdsnn5xepvxi
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeiedfoeawuyftmscb3jgqxvgd7v2ra7cupzvc3jimoofmywmj2um7u
+- victorpolisetty/alprina_llm_abci:0.1.0:bafybeidreftkqddpftpfvnlw4bacazgxyakh525lpxsssymh5cadywgisa
+- victorpolisetty/alprina_abci:0.1.0:bafybeihhoxceyiylr4qv7yri4spxqpf5lvo27bydi5vgsriln5bhwtsu6a
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
