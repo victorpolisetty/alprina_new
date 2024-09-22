@@ -7,13 +7,15 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeicxq7czrb2v2mzpvytqc53eawd6kwe7vq2lh5kn63hhxrj3fqodne
 fingerprint_ignore_patterns: []
-agent: victorpolisetty/alprina_agent:0.1.0:bafybeicpcgxbcy3lxk62xy3eaxcgfxota6aeyfpnjda3nv73ztrihqcgp4
-number_of_agents: 1
+agent: victorpolisetty/alprina_agent:0.1.0:bafybeig7ghkyxg26mtqtbwacps3vqybbjvkauxprnfom75pdcz2t5glsai
+number_of_agents: 2
 deployment:
   agent:
     ports:
       0:
         8000: 8000
+      1:
+        8001: 8000
 ---
 public_id: victorpolisetty/alprina_abci:0.1.0
 type: skill
@@ -161,6 +163,19 @@ extra:
 public_id: valory/ledger:0.19.0
 type: connection
 0:
+  config:
+    ledger_apis:
+      ethereum:
+        address: ${ETHEREUM_LEDGER_RPC:str:http://host.docker.internal:8545}
+        chain_id: ${ETHEREUM_LEDGER_CHAIN_ID:int:31337}
+        poa_chain: ${ETHEREUM_LEDGER_IS_POA_CHAIN:bool:false}
+        default_gas_price_strategy: ${ETHEREUM_LEDGER_PRICING:str:eip1559}
+      gnosis:
+        address: ${GNOSIS_LEDGER_RPC:str:http://host.docker.internal:8545}
+        chain_id: ${GNOSIS_LEDGER_CHAIN_ID:int:42220}
+        poa_chain: ${GNOSIS_LEDGER_IS_POA_CHAIN:bool:true}
+        default_gas_price_strategy: ${GNOSIS_LEDGER_PRICING:str:eip1559}
+1:
   config:
     ledger_apis:
       ethereum:

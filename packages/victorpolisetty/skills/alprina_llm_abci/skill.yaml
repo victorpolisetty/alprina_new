@@ -199,6 +199,8 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies: {}
+dependencies:
+  openai:
+    version: ==1.46.0
 is_abstract: true
 customs: []
