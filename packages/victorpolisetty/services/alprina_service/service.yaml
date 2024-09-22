@@ -7,7 +7,7 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeicxq7czrb2v2mzpvytqc53eawd6kwe7vq2lh5kn63hhxrj3fqodne
 fingerprint_ignore_patterns: []
-agent: victorpolisetty/alprina_agent:0.1.0:bafybeifpeih5tczeqrn777x2ka5h557umvz4qpydw434tj45pmwpp3bila
+agent: victorpolisetty/alprina_agent:0.1.0:bafybeigyohrc27s6arjyow52q7cgjyzffy6kpqjx7k2s5wnsihfu6y275i
 number_of_agents: 1
 deployment:
   agent:
@@ -93,6 +93,65 @@ extra:
         api_keys_json: ${API_KEYS_JSON:list:[]}
         task_deadline: ${TASK_DEADLINE:float:240.0}
         polling_interval: ${POLLING_INTERVAL:float:30.0}
+        llm_prompt: ${SENTIMENT_ANALYSIS_PROMPT:str:null}
+        agent_index: ${AGENT_INDEX_0:int:0}
+        num_agents: ${NUM_AGENTS:int:1}
+        from_block_range: ${FROM_BLOCK_RANGE:int:50000}
+        timeout_limit: ${TIMEOUT_LIMIT:int:3}
+        max_block_window: ${MAX_BLOCK_WINDOW:int:500}
+1:
+  models:
+    benchmark_tool:
+      args:
+        log_dir: ${LOG_DIR:str:/tmp}
+    params:
+      args:
+        setup: *id001
+        genesis_config: *id002
+        cleanup_history_depth: 1
+        cleanup_history_depth_current: null
+        drand_public_key: 868f005eb8e6e4ca0a47c8a77ceaa5309a47978a7c71bc5cce96366b5d7a569937c529eeda66c7293784a9402801af31
+        earliest_block_to_monitor: ${EARLIEST_BLOCK_TO_MONITOR:int:8053690}
+        keeper_timeout: 30.0
+        max_attempts: 10
+        max_healthcheck: 120
+        multisend_address: ${MULTISEND_ADDRESS:str:0xA238CBeb142c10Ef7Ad8442C6D1f9E89e07e7761}
+        termination_sleep: ${TERMINATION_SLEEP:int:900}
+        reset_pause_duration: ${RESET_PAUSE_DURATION:int:300}
+        on_chain_service_id: ${ON_CHAIN_SERVICE_ID:int:null}
+        reset_tendermint_after: ${RESET_TENDERMINT_AFTER:int:30}
+        retry_attempts: 400
+        retry_timeout: 3
+        request_retry_delay: 1.0
+        request_timeout: 10.0
+        round_timeout_seconds: 30.0
+        service_id: alprina
+        service_registry_address: ${SERVICE_REGISTRY_ADDRESS:str:0x48b6af7B12C71f09e2fC8aF4855De4Ff54e775cA}
+        share_tm_config_on_startup: ${USE_ACN:bool:false}
+        sleep_time: 1
+        tendermint_check_sleep_delay: 3
+        tendermint_com_url: ${TENDERMINT_COM_URL:str:http://localhost:8080}
+        tendermint_max_retries: 5
+        tendermint_url: ${TENDERMINT_URL:str:http://localhost:26657}
+        tendermint_p2p_url: ${TENDERMINT_P2P_URL_0:str:alprina_tm_0:26656}
+        tx_timeout: 10.0
+        use_termination: ${USE_TERMINATION:bool:true}
+        validate_timeout: 1205
+        service_endpoint_base: ${SERVICE_ENDPOINT_BASE:str:https://demo.autonolas.tech/}
+        use_slashing: ${USE_SLASHING:bool:false}
+        slash_cooldown_hours: ${SLASH_COOLDOWN_HOURS:int:3}
+        slash_threshold_amount: ${SLASH_THRESHOLD_AMOUNT:int:10000000000000000}
+        light_slash_unit_amount: ${LIGHT_SLASH_UNIT_AMOUNT:int:5000000000000000}
+        serious_slash_unit_amount: ${SERIOUS_SLASH_UNIT_AMOUNT:int:8000000000000000}
+        multisend_batch_size: ${MULTISEND_BATCH_SIZE:int:5}
+        ipfs_address: ${IPFS_ADDRESS:str:https://gateway.autonolas.tech/ipfs/}
+        default_chain_id: ${DEFAULT_CHAIN_ID:str:gnosis}
+        termination_from_block: ${TERMINATION_FROM_BLOCK:int:0}
+        tool: ${TOOL:str:prepare_tx}
+        api_keys_json: ${API_KEYS_JSON:list:[]}
+        task_deadline: ${TASK_DEADLINE:float:240.0}
+        polling_interval: ${POLLING_INTERVAL:float:30.0}
+        llm_prompt: ${HISTORICAL_ANALYSIS_PROMPT:str:null}
         agent_index: ${AGENT_INDEX_0:int:0}
         num_agents: ${NUM_AGENTS:int:1}
         from_block_range: ${FROM_BLOCK_RANGE:int:50000}

@@ -87,6 +87,7 @@ class Params(BaseParams):
         #     "file_hash_to_tools_json",
         # )
         self.polling_interval = kwargs.get("polling_interval", 30.0)
+        self.llm_prompt = "hello"
         self.task_deadline = kwargs.get("task_deadline", 240.0)
         self.num_agents = kwargs.get("num_agents", None)
         self.request_count: int = 0
@@ -125,10 +126,10 @@ class AlpacaResponseSpecs(ApiSpecs):
             "parameters": {
                 "symbols": "TSLA",
                 "timeframe": "1Week",
-                "start": "2022-01-01",
-                "end": "2023-02-02",
-                "limit": 5
-            }  # Add any necessary query parameters here
+                "start": "2024-08-01",
+                "end": "2024-09-18",
+                "limit": 10
+            }
         }
 
 
@@ -148,6 +149,6 @@ class PolygonResponseSpecs(ApiSpecs):
             "parameters": {
                 "apiKey": api_key,
                 "ticker": "TSLA",
-                "limit": 2,
+                "limit": 5,
             }
         }

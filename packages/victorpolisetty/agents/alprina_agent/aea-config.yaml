@@ -31,9 +31,9 @@ protocols:
 skills:
 - valory/abstract_abci:0.1.0:bafybeihat4giyc4bz6zopvahcj4iw53356pbtwfn7p4d5yflwly2qhahum
 - valory/abstract_round_abci:0.1.0:bafybeih3enhagoql7kzpeyzzu2scpkif6y3ubakpralfnwxcvxexdyvy5i
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeiedfoeawuyftmscb3jgqxvgd7v2ra7cupzvc3jimoofmywmj2um7u
-- victorpolisetty/alprina_llm_abci:0.1.0:bafybeidreftkqddpftpfvnlw4bacazgxyakh525lpxsssymh5cadywgisa
-- victorpolisetty/alprina_abci:0.1.0:bafybeihhoxceyiylr4qv7yri4spxqpf5lvo27bydi5vgsriln5bhwtsu6a
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihswaf7pemzxxfapdvzpikqhqvvm3ir6j7pep25hpoasqzhdzxgjy
+- victorpolisetty/alprina_llm_abci:0.1.0:bafybeichnmkskfbiunowv7u6iu2hbnhoz5zbkwn534dlryo5y6y5nhwm6y
+- victorpolisetty/alprina_abci:0.1.0:bafybeia4rwpunkmxenvqhqk4lzngzrz3am5vzw4yocvgjois56bcoot3gm
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
@@ -181,6 +181,7 @@ models:
       api_keys_json: ${API_KEYS_JSON:list:[]}
       task_deadline: ${float:240.0}
       polling_interval: ${float:30.0}
+      llm_prompt: ${str:hello}
       agent_index: ${int:0}
       num_agents: ${int:4}
       from_block_range: ${int:50000}

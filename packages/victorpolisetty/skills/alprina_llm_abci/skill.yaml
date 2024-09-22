@@ -8,11 +8,11 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeib6otcjpqcls26idvvgyu2bjuun5slxhar4iwzahrmyfdzku37jpi
   behaviours/base.py: bafybeicxa2gyo4icqkvcykgv3v5owisbhqzrpeyexhvprvua7zmxlzk2vu
-  behaviours/prompt_llm.py: bafybeiekphppewpjixefvniylk5stdq3t5vt5cetecdwqciu7qbyh2spia
+  behaviours/prompt_llm.py: bafybeidw532drqjlnq4evifdhh6yhxoazrvopicpxu4674ocdmez5yclbi
   dialogues.py: bafybeidhxqhvzknq6rd5nan4xe2ff3f3p67uo5422kwrq4cegerynspqpa
   fsm_specification.yaml: bafybeibnizkmpnily75yukowq7cqgj36hfpxb3f3wvzcmnejuobc4ox3t4
   handlers.py: bafybeidxljtgllpkpnoq562laznbqxmna7fn4sxrhgycapu3w4giefbdwm
-  models.py: bafybeiahwm6w4le66fh6w2fxtfb6mparzkacqzxe2jnahidzefzj6k74l4
+  models.py: bafybeids5zrbaujxh72rmuv4mdkifw6eobfafhatw6njczorevzpkglv7e
   payloads.py: bafybeihyxm665w5ldewbhmvx7krs2sso6wwmxcmlg336x3y656ofl6t5gy
   round_behaviour.py: bafybeih4u6c6cfzzsv5jwmalgutlyty5wrl725poa5w3cbbeznd5labmxu
   rounds.py: bafybeid3pweqvnh2fffwlcfm2anfcsvxvjr35ukmpttin7uf4uaqlegdzu
@@ -125,6 +125,7 @@ models:
       task_deadline: 240.0
       api_keys_json: []
       polling_interval: 30.0
+      llm_prompt: Hello
       agent_index: 0
       num_agents: 1
       from_block_range: 5000

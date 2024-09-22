@@ -44,6 +44,8 @@ class SharedState(BaseSharedState):
 
 Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
+
+
 #Params = BaseParams
 
 class AlprinaLlmParams(BaseParams):
@@ -56,11 +58,10 @@ class AlprinaLlmParams(BaseParams):
         #     kwargs, "api_keys_json"
         # )
 
-
-
         #self.input_query = kwargs.get("input_query", None)
         enforce(self.input_query is not None, "input_query must be set!")
         self.polling_interval = kwargs.get("polling_interval", 30.0)
+        self.llm_prompt = kwargs.get("llm_prompt", None)
         self.task_deadline = kwargs.get("task_deadline", 240.0)
         self.num_agents = kwargs.get("num_agents", None)
         self.request_count: int = 0

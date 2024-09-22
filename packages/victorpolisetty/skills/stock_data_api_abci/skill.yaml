@@ -14,7 +14,7 @@ fingerprint:
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
   fsm_specification.yaml: bafybeihzfwzqcqsanii4xg4okzyak3u6to3tvqhk2u33quwknrtdyd4mti
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
-  models.py: bafybeiafb6rappbr57fw2kzspdeg4tyrs6ihexua2zeqaih2w2bife5tgq
+  models.py: bafybeia65afwi2kqxjeosddofzrlshoukxscwtt2o7awygptmixlbtvaau
   payloads.py: bafybeihyiajfxwcf6abi7wqqeq4gq6n2h4uo7luvn4j74jvlty6jfvfwbq
   round_behaviour.py: bafybeiat66qdduuupzh2s2wg77fjsnhp2pzvkmadahvybsk35vq7tzwnku
   rounds.py: bafybeifdgzr42q3x54stf7cgszyo46q7z4akc4ukslg6pjvd6smsxses4e
@@ -127,6 +127,7 @@ models:
       task_deadline: 240.0
       api_keys_json: []
       polling_interval: 30.0
+      llm_prompt: hello
       agent_index: 0
       num_agents: 1
       from_block_range: 5000

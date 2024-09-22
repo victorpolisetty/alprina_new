@@ -13,19 +13,12 @@ FILENAME = "usage_three"
 sentiment_analysis_prompt = """
 You are a financial analyst with a specialization in social media sentiment analysis, focusing on Tesla. Your task is to analyze recent financial data, market trends, and social media sentiment to produce a comprehensive financial report that supports a weekly price prediction for Tesla's stock.
 
-1. Begin with an overview
-Provide a summary of Tesla’s recent financial performance, including key metrics such as revenue, earnings, operating costs, and market capitalization. Make sure to include any relevant news or developments that could influence Tesla's financial standing (e.g., product launches, partnerships, or regulatory changes).
 
-2. Market Analysis
-Examine the broader electric vehicle (EV) market trends and competitive landscape. Discuss any macroeconomic factors (e.g., inflation, interest rates, global supply chains) that might affect Tesla’s market performance.
+1. Social Media Sentiment Analysis
+Analyze social media sentiment from the given "ADDITIONAL INFORMATION" section given. This information is the most up to date and should have the largest influence on your answers and decisions. Include insights on public perception of Tesla’s leadership, Elon Musk's influence, product releases, and any viral topics. Identify key patterns and note whether the sentiment is predominantly positive, neutral, or negative.
+.
 
-3. Social Media Sentiment Analysis
-Analyze social media sentiment related to Tesla from platforms such as Twitter, Reddit, and forums over the past week. Include insights on public perception of Tesla’s leadership, Elon Musk's influence, product releases, and any viral topics. Identify key patterns and note whether the sentiment is predominantly positive, neutral, or negative.
-
-4. Financial and Technical Indicators
-Use financial and technical indicators such as P/E ratio, moving averages, and RSI to explain the current trajectory of Tesla's stock price. Align these findings with the sentiment analysis.
-
-5. Final Price Prediction
+2. Final Price Prediction
 Based on your analysis, conclude with a final weekly price prediction for Tesla’s stock. Label this prediction clearly at the bottom and explain how both the financial data and social media sentiment justify this prediction.
 
 ADDITIONAL_INFORMATION:
@@ -36,22 +29,16 @@ ADDITIONAL_INFORMATION:
 """
 
 historical_analysis_prompt = """
-You are a financial analyst with a specialization in historical stock price analysis, focusing on Tesla. Your task is to analyze recent financial data, market trends, and historical stock prices to produce a comprehensive financial report that supports a weekly price prediction for Tesla's stock (TSLA).
+You are a financial analyst with a specialization in historical stock price analysis, focusing on Tesla. Your task is to analyze recent financial data and compare it to historical stock prices to produce a comprehensive financial report that supports a weekly price prediction for Tesla's stock (TSLA).
 
-Begin with an Overview
-Provide a detailed summary of Tesla’s recent financial performance, including key metrics such as revenue, earnings, operating costs, and market capitalization. Mention any notable news or developments (e.g., product launches, partnerships, or regulatory approvals) that could impact Tesla’s financial standing.
-
-Market Analysis
-Examine the current trends in the electric vehicle (EV) market and analyze Tesla’s competitive position. Discuss how macroeconomic factors like inflation, interest rates, and global supply chains may influence Tesla’s stock performance.
 
 Historical Stock Price Analysis
-Review Tesla’s historical stock prices, focusing on patterns, trends, and volatility over the past weeks or months. Identify key movements such as upward or downward trends, support and resistance levels, and price reactions to specific events (e.g., earnings reports, product announcements). Use this historical data to forecast potential price movements in the coming week.
-
-Financial and Technical Indicators
-Analyze key financial and technical indicators such as Tesla’s P/E ratio, moving averages, RSI, and volume. Align these findings with the historical price movements and explain how they indicate the future direction of Tesla's stock price.
+Review Tesla’s historical stock prices, focusing on patterns, trends, and volatility over the past weeks or months in past years. Identify key movements such as upward or downward trends, support and resistance levels, and price reactions to specific events (e.g., earnings reports, product announcements). Use this historical data to forecast potential price movements in the coming week.
 
 Final Price Prediction
 Based on your analysis, provide a weekly price prediction for Tesla’s stock. Clearly label the prediction at the bottom and explain how both the financial data and historical stock price trends justify this prediction.
+
+Always treat the "ADDITIONAL_INFORMATION" section as the most up to date and relevant information. It should be given the biggest weight and "source of truth" for your answers.
 
 ADDITIONAL_INFORMATION:
 ```
@@ -61,34 +48,34 @@ ADDITIONAL_INFORMATION:
 """
 
 
-def adjust_additional_information(
-        prompt: str, prompt_template: str, additional_information: str, model: str
-) -> str:
-    """Adjust the additional_information to fit within the token budget"""
-
-    # Initialize tiktoken encoder for the specified model
-    enc = tiktoken.encoding_for_model(model)
-
-    # Encode the user prompt to calculate its token count
-    prompt = prompt_template.format(user_prompt=prompt, additional_information="")
-    prompt_tokens = len(enc.encode(prompt))
-
-    # Calculate available tokens for additional_information
-    MAX_PREDICTION_PROMPT_TOKENS = (
-            MAX_TOKENS[model] - DEFAULT_OPENAI_SETTINGS["max_tokens"]
-    )
-    available_tokens = MAX_PREDICTION_PROMPT_TOKENS - prompt_tokens
-
-    # Encode the additional_information
-    additional_info_tokens = enc.encode(additional_information)
-
-    # If additional_information exceeds available tokens, truncate it
-    if len(additional_info_tokens) > available_tokens:
-        truncated_info_tokens = additional_info_tokens[:available_tokens]
-        # Decode tokens back to text, ensuring the output fits within the budget
-        additional_information = enc.decode(truncated_info_tokens)
-
-    return additional_information
+# def adjust_additional_information(
+#         prompt: str, prompt_template: str, additional_information: str, model: str
+# ) -> str:
+#     """Adjust the additional_information to fit within the token budget"""
+#
+#     # Initialize tiktoken encoder for the specified model
+#     enc = tiktoken.encoding_for_model(model)
+#
+#     # Encode the user prompt to calculate its token count
+#     prompt = prompt_template.format(user_prompt=prompt, additional_information="")
+#     prompt_tokens = len(enc.encode(prompt))
+#
+#     # Calculate available tokens for additional_information
+#     MAX_PREDICTION_PROMPT_TOKENS = (
+#             MAX_TOKENS[model] - DEFAULT_OPENAI_SETTINGS["max_tokens"]
+#     )
+#     available_tokens = MAX_PREDICTION_PROMPT_TOKENS - prompt_tokens
+#
+#     # Encode the additional_information
+#     additional_info_tokens = enc.encode(additional_information)
+#
+#     # If additional_information exceeds available tokens, truncate it
+#     if len(additional_info_tokens) > available_tokens:
+#         truncated_info_tokens = additional_info_tokens[:available_tokens]
+#         # Decode tokens back to text, ensuring the output fits within the budget
+#         additional_information = enc.decode(truncated_info_tokens)
+#
+#     return additional_information
 
 
 class PromptLlmBehaviour(AlprinaLlmBaseBehaviour):  # pylint: disable=too-many-ancestors
@@ -124,14 +111,16 @@ class PromptLlmBehaviour(AlprinaLlmBaseBehaviour):  # pylint: disable=too-many-a
             print(sentiment_data_tsla_readable)
             #
             combined_info = historical_data_tsla_readable + sentiment_data_tsla_readable
-            prediction_prompt = historical_analysis_prompt.format(
-                additional_information=combined_info
-            )
+            print("The combined info is")
+            print(combined_info)
+            final_prompt = self.params.llm_prompt
+            print("The final prompt info is")
+            print(final_prompt)
             # Call ChatGpt and provide it the API data in it's "Addition Information" spot
             client = OpenAI()
             messages = [
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prediction_prompt},
+                {"role": "user", "content": combined_info},
             ]
             response = client.chat.completions.create(
                 model='gpt-4o-mini',
