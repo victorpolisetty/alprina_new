@@ -3,8 +3,8 @@
         "skill/victorpolisetty/stock_data_api_abci/0.1.0": "bafybeihswaf7pemzxxfapdvzpikqhqvvm3ir6j7pep25hpoasqzhdzxgjy",
         "skill/victorpolisetty/alprina_abci/0.1.0": "bafybeia4rwpunkmxenvqhqk4lzngzrz3am5vzw4yocvgjois56bcoot3gm",
         "skill/victorpolisetty/alprina_llm_abci/0.1.0": "bafybeichnmkskfbiunowv7u6iu2hbnhoz5zbkwn534dlryo5y6y5nhwm6y",
-        "agent/victorpolisetty/alprina_agent/0.1.0": "bafybeigyohrc27s6arjyow52q7cgjyzffy6kpqjx7k2s5wnsihfu6y275i",
-        "service/victorpolisetty/alprina_service/0.1.0": "bafybeia5vcho5f5s37yuqce63awn7crfr6tudvx24v3j6h4gy7u43bwuky"
+        "agent/victorpolisetty/alprina_agent/0.1.0": "bafybeicpcgxbcy3lxk62xy3eaxcgfxota6aeyfpnjda3nv73ztrihqcgp4",
+        "service/victorpolisetty/alprina_service/0.1.0": "bafybeiafvwcyfo3hlcdl77cegepahshyouu2egxlbxdevupbxti5rqqsge"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi",

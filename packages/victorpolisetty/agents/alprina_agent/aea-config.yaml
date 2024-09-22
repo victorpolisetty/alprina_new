@@ -156,7 +156,7 @@ models:
       service_id: alprina
       service_registry_address: ${str:null}
       setup:
-        all_participants: ${list:["0x5a3151e7E265445d355697419DCEAfaE6dc67048"]}
+        all_participants: ${list:["0xaaf564bc5027a06a966d4938a9Cc0Abee0fD8aB6", "0xCBE226992d369eEcea521E7D0c72ac264B109de1"]}
         safe_contract_address: ${str:0x0000000000000000000000000000000000000000}
         consensus_threshold: ${int:null}
       share_tm_config_on_startup: ${bool:false}
