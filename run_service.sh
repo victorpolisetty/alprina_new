@@ -6,12 +6,14 @@ source .env
 
 # Remove previous service build
 if test -d alprina_service; then
-  echo "Removing previous service build"
+  echo "Removing previous service build (needs sudo permission)"
   sudo rm -r alprina_service
 fi
 
 # Push packages and fetch service
 make clean
+
+autonomy packages lock
 
 autonomy push-all
 

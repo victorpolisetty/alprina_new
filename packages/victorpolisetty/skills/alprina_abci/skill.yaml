@@ -22,8 +22,8 @@ skills:
 - valory/registration_abci:0.1.0:bafybeiek7zcsxbucjwzgqfftafhfrocvc7q4yxllh2q44jeemsjxg3rcfm
 - valory/reset_pause_abci:0.1.0:bafybeidw4mbx3os3hmv7ley7b3g3gja7ydpitr7mxbjpwzxin2mzyt5yam
 - valory/termination_abci:0.1.0:bafybeihq6qtbwt6i53ayqym63vhjexkcppy26gguzhhjqywfmiuqghvv44
-- victorpolisetty/stock_data_api_abci:0.1.0:bafybeihswaf7pemzxxfapdvzpikqhqvvm3ir6j7pep25hpoasqzhdzxgjy
-- victorpolisetty/alprina_llm_abci:0.1.0:bafybeichnmkskfbiunowv7u6iu2hbnhoz5zbkwn534dlryo5y6y5nhwm6y
+- victorpolisetty/stock_data_api_abci:0.1.0:bafybeiamyfw52d63zizqczkl3bfbx2xlyodbioala5p4ccvg2jblkhd7wm
+- victorpolisetty/alprina_llm_abci:0.1.0:bafybeihxokeqv6s3toti7h2wabbn5g6ct4usewq3tkxewzo5edmz3plbji
 - valory/transaction_settlement_abci:0.1.0:bafybeigtzlk4uakmd54rxnznorcrstsr52kta474lgrnvx5ovr546vj7sq
 behaviours:
   main:
@@ -126,7 +126,15 @@ models:
       use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
-      api_keys_json: []
+      api_keys_json:
+      - - APCA-API-KEY-ID
+        - dummy_api_key
+      - - APCA-API-SECRET-KEY
+        - dummy_api_key
+      - - POLYGON-API-KEY
+        - dummy_api_key
+      - - CHAT-GPT-API-KEY
+        - dummy_api_key
       polling_interval: 30.0
       llm_prompt: hello
       agent_index: 0
@@ -205,5 +213,7 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies: {}
+dependencies:
+  openai:
+    version: ==1.46.0
 is_abstract: false

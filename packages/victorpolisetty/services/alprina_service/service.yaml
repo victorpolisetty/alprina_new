@@ -7,7 +7,7 @@ license: Apache-2.0
 fingerprint:
   README.md: bafybeicxq7czrb2v2mzpvytqc53eawd6kwe7vq2lh5kn63hhxrj3fqodne
 fingerprint_ignore_patterns: []
-agent: victorpolisetty/alprina_agent:0.1.0:bafybeig7ghkyxg26mtqtbwacps3vqybbjvkauxprnfom75pdcz2t5glsai
+agent: victorpolisetty/alprina_agent:0.1.0:bafybeidzmxfkpvp5jqdvmetye6g4sqvn6kv7d5mj5t6z7eao4mkspyb644
 number_of_agents: 2
 deployment:
   agent:
@@ -92,7 +92,9 @@ extra:
         default_chain_id: ${DEFAULT_CHAIN_ID:str:gnosis}
         termination_from_block: ${TERMINATION_FROM_BLOCK:int:0}
         tool: ${TOOL:str:prepare_tx}
-        api_keys_json: ${API_KEYS_JSON:list:[]}
+        api_keys_json: ${API_KEYS_JSON:list:[["APCA-API-KEY-ID", "dummy_api_key"],["APCA-API-SECRET-KEY",
+          "dummy_api_key"],["POLYGON-API-KEY", "dummy_api_key"],["CHAT-GPT-API-KEY",
+          "dummy_api_key"]]}
         task_deadline: ${TASK_DEADLINE:float:240.0}
         polling_interval: ${POLLING_INTERVAL:float:30.0}
         llm_prompt: ${SENTIMENT_ANALYSIS_PROMPT:str:null}

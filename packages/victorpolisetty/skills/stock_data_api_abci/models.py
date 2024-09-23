@@ -68,17 +68,21 @@ class Params(BaseParams):
         # self.from_block: Optional[int] = None
         # self.req_to_callback: Dict[str, Callable] = {}
         # Load the API keys JSON from the environment variable
-        api_keys_json_str = os.getenv("API_KEYS_JSON", "[]")  # Get the JSON string, or default to empty list if not found
+        self.api_keys: Dict = self._nested_list_todict_workaround(
+            kwargs, "api_keys_json"
+        )
+        # api_keys_json_str = os.getenv("API_KEYS_JSON", "[]")
+        # print("THE JSON KEYS: ", api_keys_json_str)
+        # # Parse the JSON string into a list of lists
+        # api_keys_list = json.loads(api_keys_json_str)
+        #
+        # # Convert the list of lists into a dictionary
+        # self.api_keys = {key: value for key, value in api_keys_list}
+        # # self.api_keys: Dict = self._nested_list_todict_workaround(
+        # #     kwargs, "api_keys_json"
+        # # )
 
-        # Parse the JSON string into a list of lists
-        api_keys_list = json.loads(api_keys_json_str)
-
-        # Convert the list of lists into a dictionary
-        self.api_keys = {key: value for key, value in api_keys_list}
-        # self.api_keys: Dict = self._nested_list_todict_workaround(
-        #     kwargs, "api_keys_json"
-        # )
-        print("API KEYS: ", self.api_keys)
+        # print("API KEYS: ", self.api_keys)
 
         # self.file_hash_to_tools: Dict[
         #     str, List[str]
@@ -106,6 +110,16 @@ class Params(BaseParams):
         #self.mech_to_config: Dict[str, MechConfig] = self._parse_mech_configs(kwargs)
         super().__init__(*args, **kwargs)
 
+    def _nested_list_todict_workaround(
+            self,
+            kwargs: Dict,
+            key: str,
+    ) -> Dict:
+        """Get a nested list from the kwargs and convert it to a dictionary."""
+        values = cast(List, self._ensure(key, kwargs, list))
+        if len(values) == 0:
+            raise ValueError(f"No {key} specified!")
+        return {value[0]: value[1] for value in values}
 
 class AlpacaResponseSpecs(ApiSpecs):
     """A model that wraps ApiSpecs for the Alpaca API response specifications."""
@@ -113,6 +127,8 @@ class AlpacaResponseSpecs(ApiSpecs):
     def get_spec(self) -> Dict[str, Any]:
         """Return the specifications for the Alpaca API request."""
         # Access the API keys loaded in Params
+        print("THE API KEY SHOWS")
+        print(self.context.params.api_keys)
         api_key_id = self.context.params.api_keys["APCA-API-KEY-ID"]
         api_secret_key = self.context.params.api_keys["APCA-API-SECRET-KEY"]
         return {

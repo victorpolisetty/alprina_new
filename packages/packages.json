@@ -1,10 +1,10 @@
 {
     "dev": {
-        "skill/victorpolisetty/stock_data_api_abci/0.1.0": "bafybeihswaf7pemzxxfapdvzpikqhqvvm3ir6j7pep25hpoasqzhdzxgjy",
-        "skill/victorpolisetty/alprina_abci/0.1.0": "bafybeia4rwpunkmxenvqhqk4lzngzrz3am5vzw4yocvgjois56bcoot3gm",
-        "skill/victorpolisetty/alprina_llm_abci/0.1.0": "bafybeichnmkskfbiunowv7u6iu2hbnhoz5zbkwn534dlryo5y6y5nhwm6y",
-        "agent/victorpolisetty/alprina_agent/0.1.0": "bafybeig7ghkyxg26mtqtbwacps3vqybbjvkauxprnfom75pdcz2t5glsai",
-        "service/victorpolisetty/alprina_service/0.1.0": "bafybeicuf4tpzwfjwcrkhigjrvcr2haya5ajdqpgdsyu6snorrngc3bhrq"
+        "skill/victorpolisetty/stock_data_api_abci/0.1.0": "bafybeiamyfw52d63zizqczkl3bfbx2xlyodbioala5p4ccvg2jblkhd7wm",
+        "skill/victorpolisetty/alprina_abci/0.1.0": "bafybeif5sy7ladxlotlcce7u5x4gv7ximqz2i7fauynpxzuqapsvjs4wue",
+        "skill/victorpolisetty/alprina_llm_abci/0.1.0": "bafybeihxokeqv6s3toti7h2wabbn5g6ct4usewq3tkxewzo5edmz3plbji",
+        "agent/victorpolisetty/alprina_agent/0.1.0": "bafybeidzmxfkpvp5jqdvmetye6g4sqvn6kv7d5mj5t6z7eao4mkspyb644",
+        "service/victorpolisetty/alprina_service/0.1.0": "bafybeia54emnzcg6q46n27yhnip5w4bcgrhvg32zq45wd7o3mn4mdydkae"
     },
     "third_party": {
         "protocol/open_aea/signing/1.0.0": "bafybeihv62fim3wl2bayavfcg3u5e5cxu3b7brtu4cn5xoxd6lqwachasi",

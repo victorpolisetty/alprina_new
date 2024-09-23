@@ -14,7 +14,7 @@ fingerprint:
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
   fsm_specification.yaml: bafybeihzfwzqcqsanii4xg4okzyak3u6to3tvqhk2u33quwknrtdyd4mti
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
-  models.py: bafybeia65afwi2kqxjeosddofzrlshoukxscwtt2o7awygptmixlbtvaau
+  models.py: bafybeifvcaaxbemqfl45koyw4yplggcuyt2xz2xt6oqnuy7ldmnv7iqunq
   payloads.py: bafybeihyiajfxwcf6abi7wqqeq4gq6n2h4uo7luvn4j74jvlty6jfvfwbq
   round_behaviour.py: bafybeiat66qdduuupzh2s2wg77fjsnhp2pzvkmadahvybsk35vq7tzwnku
   rounds.py: bafybeifdgzr42q3x54stf7cgszyo46q7z4akc4ukslg6pjvd6smsxses4e
@@ -125,7 +125,15 @@ models:
       use_termination: false
       validate_timeout: 1205
       task_deadline: 240.0
-      api_keys_json: []
+      api_keys_json:
+      - - APCA-API-KEY-ID
+        - dummy_api_key
+      - - APCA-API-SECRET-KEY
+        - dummy_api_key
+      - - POLYGON-API-KEY
+        - dummy_api_key
+      - - CHAT-GPT-API-KEY
+        - dummy_api_key
       polling_interval: 30.0
       llm_prompt: hello
       agent_index: 0
@@ -185,6 +193,8 @@ models:
   tendermint_dialogues:
     args: {}
     class_name: TendermintDialogues
-dependencies: {}
+dependencies:
+  openai:
+    version: ==1.46.0
 is_abstract: true
 customs: []

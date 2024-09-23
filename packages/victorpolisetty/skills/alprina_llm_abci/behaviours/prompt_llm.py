@@ -116,11 +116,27 @@ class PromptLlmBehaviour(AlprinaLlmBaseBehaviour):  # pylint: disable=too-many-a
             final_prompt = self.params.llm_prompt
             print("The final prompt info is")
             print(final_prompt)
+
+            # # Prepare API request specifications
+            # api_specs = self.context.chatgpt_response.get_spec()
+            #
+            # # Make the asynchronous HTTP request to the Alpaca API
+            # response = yield from self.get_http_response(
+            #     method=api_specs["method"],
+            #     url=api_specs["url"],
+            #     headers=api_specs["headers"],
+            #     parameters=api_specs["parameters"]
+            # )
+            # print("The response:")
+            # print(response)
+            # # Process the API response
+            # historical_data = self.context.chatgpt_response.process_response(response)
+            # print(historical_data)
             # Call ChatGpt and provide it the API data in it's "Addition Information" spot
             client = OpenAI()
             messages = [
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": combined_info},
+                {"role": "user", "content": final_prompt+combined_info},
             ]
             response = client.chat.completions.create(
                 model='gpt-4o-mini',

@@ -18,7 +18,7 @@
 # ------------------------------------------------------------------------------
 
 """This module contains the shared state for the abci skill of ScraperAbciApp."""
-
+import json
 from packages.valory.skills.abstract_round_abci.models import BaseParams
 from packages.victorpolisetty.skills.alprina_llm_abci.rounds import AlprinaLlmAbciApp
 from packages.valory.skills.abstract_round_abci.models import (
@@ -103,12 +103,13 @@ class ChatGptResponseSpecs(ApiSpecs):
             "method": "POST",
             "url": "https://api.openai.com/v1/chat/completions",
             "headers": {
-                "Authorization": 'Bearer ' + api_key_id,
+                "Authorization": f"Bearer {api_key_id}",
                 "Content-Type": "application/json"
             },
-            "body": {
+            "parameters": {},  # Empty as this is a POST request
+            "body": json.dumps({
                 "model": "gpt-4o-mini",
                 "messages": [{"role": "user", "content": "Say this is a test!"}],
                 "temperature": 0.7
-            }
+            })
         }
