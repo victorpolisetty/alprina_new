@@ -69,7 +69,7 @@ docker container run -it valory/open-autonomy-user:latest
 5. Fill in the required environment variables in .env. You'll need a Ethereum RPC. `ALL_PARTICIPANTS` needs to contain your agent's public address.
 
 
-6. Test the agent
+6. Test the agent. Make sure to add api keys in api_keys_json param in the aea-config.yaml file to run the agent successfully. Also, make sure there is only one agent address in .env all_participants and aea-config.yaml all_participants
 
     ```bash
     bash run_agent.py

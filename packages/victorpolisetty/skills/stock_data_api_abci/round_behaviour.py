@@ -20,7 +20,8 @@
 """This package contains round behaviours of StockDataApiAbciApp."""
 
 from typing import Set, Type
-from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.hello import HelloBehaviour
+from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.collect_randomness import CollectRandomnessBehaviour
+from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.select_keeper import SelectKeeperBehaviour
 from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.collect_alpaca_data import CollectAlpacaHistoricalDataBehaviour
 from packages.victorpolisetty.skills.stock_data_api_abci.behaviours.collect_polygon_sentiment_analysis import CollectPolygonSentimentAnalysisBehaviour
 
@@ -35,10 +36,11 @@ from packages.victorpolisetty.skills.stock_data_api_abci.rounds import StockData
 class StockDataApiRoundBehaviour(AbstractRoundBehaviour):
     """StockDataApiBehaviour"""
 
-    initial_behaviour_cls = HelloBehaviour
+    initial_behaviour_cls = CollectRandomnessBehaviour
     abci_app_cls = StockDataApiAbciApp  # type: ignore
     behaviours: Set[Type[BaseBehaviour]] = [  # type: ignore
-        HelloBehaviour,
+        CollectRandomnessBehaviour,
+        SelectKeeperBehaviour,
         CollectAlpacaHistoricalDataBehaviour,
         CollectPolygonSentimentAnalysisBehaviour,
     ]

@@ -54,9 +54,9 @@ class AlprinaLlmParams(BaseParams):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         """Initialize the parameters object."""
 
-        # self.api_keys: Dict = self._nested_list_todict_workaround(
-        #     kwargs, "api_keys_json"
-        # )
+        self.api_keys: Dict = self._nested_list_todict_workaround(
+            kwargs, "api_keys_json"
+        )
 
         #self.input_query = kwargs.get("input_query", None)
         enforce(self.input_query is not None, "input_query must be set!")

@@ -36,8 +36,6 @@ class CollectPolygonSentimentAnalysisBehaviour(StockDataApiBaseBehaviour):  # py
         # Measure the local execution time of the HTTP request
         with self.context.benchmark_tool.measure(self.behaviour_id).local():
             # Prepare API request specifications
-            print("The search polygon ALPACA12 analysis is: ")
-            print(self.synchronized_data.ipfs_hash_alpaca)
             api_specs = self.context.polygon_response.get_spec()
 
             # Make the asynchronous HTTP request to the Alpaca API

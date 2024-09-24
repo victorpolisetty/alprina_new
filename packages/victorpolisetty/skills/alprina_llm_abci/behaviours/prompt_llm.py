@@ -1,5 +1,5 @@
 from typing import Generator, Dict, Any, Optional, cast
-
+import os
 from openai import OpenAI
 from aea.helpers.cid import CID, to_v1
 
@@ -133,10 +133,15 @@ class PromptLlmBehaviour(AlprinaLlmBaseBehaviour):  # pylint: disable=too-many-a
             # historical_data = self.context.chatgpt_response.process_response(response)
             # print(historical_data)
             # Call ChatGpt and provide it the API data in it's "Addition Information" spot
-            client = OpenAI()
+            print("The OpenAI api key is: ")
+            print(self.params.api_keys['CHAT-GPT-API-KEY'])
+            client = OpenAI(
+                api_key=self.params.api_keys['CHAT-GPT-API-KEY']
+            )
+            print(client.api_key)
             messages = [
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": final_prompt+combined_info},
+                {"role": "user", "content": final_prompt + combined_info},
             ]
             response = client.chat.completions.create(
                 model='gpt-4o-mini',

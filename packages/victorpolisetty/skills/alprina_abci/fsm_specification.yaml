@@ -18,9 +18,15 @@ states:
 - RegistrationStartupRound
 - ResetAndPauseRound
 transition_func:
-    (HelloRound, DONE): CollectAlpacaHistoricalDataRound
-    (HelloRound, NO_MAJORITY): HelloRound
-    (HelloRound, ROUND_TIMEOUT): HelloRound
+    (RegistrationRound, DONE): CollectRandomnessRound
+    (RegistrationRound, NO_MAJORITY): RegistrationRound
+    (RegistrationStartupRound, DONE): CollectRandomnessRound
+    (CollectRandomnessRound, DONE): SelectKeeperRound
+    (CollectRandomnessRound, NO_MAJORITY): CollectRandomnessRound
+    (CollectRandomnessRound, ROUND_TIMEOUT): CollectRandomnessRound
+    (SelectKeeperRound, DONE): CollectAlpacaHistoricalDataRound
+    (SelectKeeperRound, NO_MAJORITY): SelectKeeperRound
+    (SelectKeeperRound, ROUND_TIMEOUT): SelectKeeperRound
     (CollectAlpacaHistoricalDataRound, DONE): CollectPolygonSentimentAnalysisRound
     (CollectAlpacaHistoricalDataRound, NO_MAJORITY): CollectAlpacaHistoricalDataRound
     (CollectAlpacaHistoricalDataRound, ROUND_TIMEOUT): CollectAlpacaHistoricalDataRound
@@ -30,9 +36,6 @@ transition_func:
     (PromptLlmRound, DONE): ResetAndPauseRound
     (PromptLlmRound, NO_MAJORITY): PromptLlmRound
     (PromptLlmRound, ROUND_TIMEOUT): PromptLlmRound
-    (RegistrationRound, DONE): HelloRound
-    (RegistrationRound, NO_MAJORITY): RegistrationRound
-    (RegistrationStartupRound, DONE): HelloRound
-    (ResetAndPauseRound, DONE): HelloRound
+    (ResetAndPauseRound, DONE): CollectRandomnessRound
     (ResetAndPauseRound, NO_MAJORITY): ResetAndPauseRound
     (ResetAndPauseRound, RESET_AND_PAUSE_TIMEOUT): ResetAndPauseRound

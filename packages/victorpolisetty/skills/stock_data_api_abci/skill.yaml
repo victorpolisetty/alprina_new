@@ -9,15 +9,17 @@ fingerprint:
   __init__.py: bafybeigr3e3tnk4ptncydqkfahfmrsjpkrffaypmgyu4f2ndi5qnno67ye
   behaviours/base.py: bafybeieakh7pz4gjv7fxrxdyacrydfrisx3quezxn6hfqeeocoxck3xvam
   behaviours/collect_alpaca_data.py: bafybeifdyh65bvquxa4sbukoatth4my624futtyn6pjxezl33nsitmqplq
-  behaviours/collect_polygon_sentiment_analysis.py: bafybeig27rmpvlur2jliav3i4vi5r5svfanml3jrgezhh4r5ijo27g3j4m
+  behaviours/collect_polygon_sentiment_analysis.py: bafybeiad4myhntd7owxqgeshcomy54gxs5lnlvu5ap4uzvnzvsa5fdthta
+  behaviours/collect_randomness.py: bafybeicqkm2ovfhdarw7nbpn4cymnrm4e4qsxfesyvbbubetp3fy5eb4oe
   behaviours/hello.py: bafybeidfv5jtpt5jl5ahpjqm4eb5wn6tzbdkawbp74hfmp7ej34fs3wk5m
+  behaviours/select_keeper.py: bafybeibrz5mg3kzlr57n275utto5ehnkyqzlllynoh5oommfuxemol7j5m
   dialogues.py: bafybeiec63mrcwz5l2wnslupq7a3qb7qwjexcyjcvy6gwefw7zpizgclla
-  fsm_specification.yaml: bafybeihzfwzqcqsanii4xg4okzyak3u6to3tvqhk2u33quwknrtdyd4mti
+  fsm_specification.yaml: bafybeidp2xaenpl7bshrzmjnf7l2ht2rjgnzgy4phemrnff4e4rmh3log4
   handlers.py: bafybeib64g2pqnahj26azbz3hrltkqtgk5ihgwf4qkfad7nmwbtwdbcwue
   models.py: bafybeifvcaaxbemqfl45koyw4yplggcuyt2xz2xt6oqnuy7ldmnv7iqunq
-  payloads.py: bafybeihyiajfxwcf6abi7wqqeq4gq6n2h4uo7luvn4j74jvlty6jfvfwbq
-  round_behaviour.py: bafybeiat66qdduuupzh2s2wg77fjsnhp2pzvkmadahvybsk35vq7tzwnku
-  rounds.py: bafybeifdgzr42q3x54stf7cgszyo46q7z4akc4ukslg6pjvd6smsxses4e
+  payloads.py: bafybeihccef4nyvgqodljflro22vn7pmouyhsk7holuxm7mlftxj3a7rdu
+  round_behaviour.py: bafybeig5mdxys6nd57ikdltl3w7pr24dizfgjs7kzjgorp5phs2ci6c2hm
+  rounds.py: bafybeid3inv4ov2pemy5nsaujfdmhjudbsxmzonznqrswa6jbahjg7uc7i
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -181,6 +183,17 @@ models:
       retries: 5
       url: https://api.polygon.io/v2/reference/news
     class_name: PolygonResponseSpecs
+  randomness_api:
+    args:
+      api_id: cloudflare
+      headers: {}
+      method: GET
+      parameters: {}
+      response_key: null
+      response_type: dict
+      retries: 5
+      url: https://drand.cloudflare.com/public/latest
+    class_name: RandomnessApi
   requests:
     args: {}
     class_name: Requests

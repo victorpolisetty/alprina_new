@@ -22,22 +22,24 @@
 from enum import Enum
 from typing import Dict, FrozenSet, Optional, Set
 
-from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
-    HelloPayload,
-    CollectAlpacaHistoricalDataPayload,
-    CollectPolygonSentimentAnalysisPayload,
-)
 from packages.valory.skills.abstract_round_abci.base import (
     AbciApp,
     AbciAppTransitionFunction,
     AppState,
     BaseSynchronizedData,
     CollectSameUntilThresholdRound,
+    OnlyKeeperSendsRound,
     CollectionRound,
     DegenerateRound,
     DeserializedCollection,
     EventToTimeout,
     get_name,
+)
+from packages.victorpolisetty.skills.stock_data_api_abci.payloads import (
+    CollectRandomnessPayload,
+    SelectKeeperPayload,
+    CollectAlpacaHistoricalDataPayload,
+    CollectPolygonSentimentAnalysisPayload,
 )
 
 
@@ -92,39 +94,55 @@ class SynchronizedData(BaseSynchronizedData):
         return self._get_deserialized("participant_to_polygon_round")
 
 
-class HelloRound(CollectSameUntilThresholdRound):
-    """HelloRound"""
+class CollectRandomnessRound(CollectSameUntilThresholdRound):
+    """A round for collecting randomness"""
 
-    payload_class = HelloPayload
+    payload_class = CollectRandomnessPayload
     synchronized_data_class = SynchronizedData
     done_event = Event.DONE
     no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.participant_to_hello_round)
-    selection_key = get_name(SynchronizedData.hello_data)
-
-    # Event.ROUND_TIMEOUT  # this needs to be mentioned for static checkers
+    collection_key = get_name(SynchronizedData.participant_to_randomness)
+    selection_key = get_name(SynchronizedData.most_voted_randomness)
 
 
-class CollectAlpacaHistoricalDataRound(CollectSameUntilThresholdRound):
+class SelectKeeperRound(CollectSameUntilThresholdRound):
+    """A round in a which keeper is selected"""
+
+    payload_class = SelectKeeperPayload
+    synchronized_data_class = SynchronizedData
+    done_event = Event.DONE
+    no_majority_event = Event.NO_MAJORITY
+    collection_key = get_name(SynchronizedData.participant_to_selection)
+    selection_key = get_name(SynchronizedData.most_voted_keeper_address)
+
+
+class CollectAlpacaHistoricalDataRound(OnlyKeeperSendsRound):
     """CollectAlpacaHistoricalDataRound"""
 
+    keeper_payload: Optional[CollectAlpacaHistoricalDataPayload] = None
     payload_class = CollectAlpacaHistoricalDataPayload
     synchronized_data_class = SynchronizedData
+
     done_event = Event.DONE
     no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
-    selection_key = get_name(SynchronizedData.ipfs_hash_alpaca)
+    # payload_key = (SynchronizedData.participant_to_alpaca_historical_data_round, SynchronizedData.ipfs_hash_alpaca)
+    payload_key = "ipfs_hash_alpaca"
+    # collection_key = get_name(SynchronizedData.participant_to_alpaca_historical_data_round)
+    # selection_key = get_name(SynchronizedData.ipfs_hash_alpaca)
 
 
-class CollectPolygonSentimentAnalysisRound(CollectSameUntilThresholdRound):
+class CollectPolygonSentimentAnalysisRound(OnlyKeeperSendsRound):
     """CollectPolygonSentimentAnalysisRound"""
 
+    keeper_payload: Optional[CollectPolygonSentimentAnalysisPayload] = None
     payload_class = CollectPolygonSentimentAnalysisPayload
     synchronized_data_class = SynchronizedData
+
     done_event = Event.DONE
     no_majority_event = Event.NO_MAJORITY
-    collection_key = get_name(SynchronizedData.participant_to_polygon_sentiment_analysis_round)
-    selection_key = get_name(SynchronizedData.ipfs_hash_polygon)
+    # collection_key = get_name(SynchronizedData.participant_to_polygon_sentiment_analysis_round)
+    # selection_key = get_name(SynchronizedData.ipfs_hash_polygon)
+    payload_key = "ipfs_hash_polygon"
 
 
 class FinishedHelloRound(DegenerateRound):
@@ -134,25 +152,30 @@ class FinishedHelloRound(DegenerateRound):
 class StockDataApiAbciApp(AbciApp[Event]):
     """StockDataApiAbciApp"""
 
-    initial_round_cls: AppState = HelloRound
+    initial_round_cls: AppState = CollectRandomnessRound
     initial_states: Set[AppState] = {
-        HelloRound,
+        CollectRandomnessRound,
     }
     transition_function: AbciAppTransitionFunction = {
-        HelloRound: {
-            Event.NO_MAJORITY: HelloRound,
-            Event.ROUND_TIMEOUT: HelloRound,
+        CollectRandomnessRound: {
+            Event.DONE: SelectKeeperRound,
+            Event.NO_MAJORITY: CollectRandomnessRound,
+            Event.ROUND_TIMEOUT: CollectRandomnessRound,
+        },
+        SelectKeeperRound: {
             Event.DONE: CollectAlpacaHistoricalDataRound,
+            Event.NO_MAJORITY: SelectKeeperRound,
+            Event.ROUND_TIMEOUT: SelectKeeperRound,
         },
         CollectAlpacaHistoricalDataRound: {
+            Event.DONE: CollectPolygonSentimentAnalysisRound,
             Event.NO_MAJORITY: CollectAlpacaHistoricalDataRound,
             Event.ROUND_TIMEOUT: CollectAlpacaHistoricalDataRound,
-            Event.DONE: CollectPolygonSentimentAnalysisRound,
         },
         CollectPolygonSentimentAnalysisRound: {
+            Event.DONE: FinishedHelloRound,
             Event.NO_MAJORITY: CollectPolygonSentimentAnalysisRound,
             Event.ROUND_TIMEOUT: CollectPolygonSentimentAnalysisRound,
-            Event.DONE: FinishedHelloRound,
         },
         FinishedHelloRound: {},
     }
@@ -162,7 +185,7 @@ class StockDataApiAbciApp(AbciApp[Event]):
     event_to_timeout: EventToTimeout = {}
     cross_period_persisted_keys: FrozenSet[str] = frozenset()
     db_pre_conditions: Dict[AppState, Set[str]] = {
-        HelloRound: set(),
+        CollectRandomnessRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
         FinishedHelloRound: set(),

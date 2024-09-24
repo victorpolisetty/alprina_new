@@ -25,10 +25,18 @@ from packages.valory.skills.abstract_round_abci.base import BaseTxPayload
 
 
 @dataclass(frozen=True)
-class HelloPayload(BaseTxPayload):
-    """Represent a transaction payload for the HelloRound."""
+class CollectRandomnessPayload(BaseTxPayload):
+    """Represent a transaction payload of type 'randomness'."""
 
-    content: str
+    round_id: int
+    randomness: str
+
+
+@dataclass(frozen=True)
+class SelectKeeperPayload(BaseTxPayload):
+    """Represent a transaction payload of type 'select_keeper'."""
+
+    keeper: str
 
 
 @dataclass(frozen=True)

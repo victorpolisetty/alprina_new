@@ -8,11 +8,11 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
   __init__.py: bafybeib6otcjpqcls26idvvgyu2bjuun5slxhar4iwzahrmyfdzku37jpi
   behaviours/base.py: bafybeicxa2gyo4icqkvcykgv3v5owisbhqzrpeyexhvprvua7zmxlzk2vu
-  behaviours/prompt_llm.py: bafybeigbzxh7fg24ixng3cafsqh4tuebetlkcoirw2v4mzaakxvykkjixm
+  behaviours/prompt_llm.py: bafybeicsdgekie3wrkhilw4glncsgsprxqybcddnufrumrautmzvfogm3u
   dialogues.py: bafybeidhxqhvzknq6rd5nan4xe2ff3f3p67uo5422kwrq4cegerynspqpa
   fsm_specification.yaml: bafybeibnizkmpnily75yukowq7cqgj36hfpxb3f3wvzcmnejuobc4ox3t4
   handlers.py: bafybeidxljtgllpkpnoq562laznbqxmna7fn4sxrhgycapu3w4giefbdwm
-  models.py: bafybeigv4hiewxmp6u6b56z4ne3loi4c45ugodj6i25r4cdym2zxgldahe
+  models.py: bafybeiezbmtnw6yfrq5in2ckv46ccd6yvmp2xhecepnkek5v6jlshwynfq
   payloads.py: bafybeihyxm665w5ldewbhmvx7krs2sso6wwmxcmlg336x3y656ofl6t5gy
   round_behaviour.py: bafybeih4u6c6cfzzsv5jwmalgutlyty5wrl725poa5w3cbbeznd5labmxu
   rounds.py: bafybeid3pweqvnh2fffwlcfm2anfcsvxvjr35ukmpttin7uf4uaqlegdzu
