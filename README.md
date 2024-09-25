@@ -1,6 +1,17 @@
-# Dev-template
+# Alprina
 
-A template for development with the open-autonomy framework. Find the documentation [here](https://docs.autonolas.network).
+A multi-agent system that generates a financial report and weekly price prediction (per agent) for Tesla (TSLA) stock:
+
+## Example
+
+Agent 1 has persona "analyze historical stock prices" and gives it's price financial report and weekly price prediction
+
+Agent 2 has persona "analyze social media sentiment" and gives it's price financial report and weekly price prediction
+
+## Conceptual Steps
+- Pulls from Alpaca API to get up-to-date information about Tesla (TSLA) stock
+- Pulls from Polygon API to get up-to-date social media sentiment about Tesla (TSLA) stock
+- Utilizes ChatGPT and data fed in from given APIs to create a financial report and predict what the stock price of Tesla (TSLA) will be at the end of the current week
 
 ## System requirements
 
@@ -12,24 +23,6 @@ A template for development with the open-autonomy framework. Find the documentat
 - [Docker Engine](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-Alternatively, you can fetch this docker image with the relevant requirements satisfied:
-
-> **_NOTE:_**  Tendermint and IPFS dependencies are missing from the image at the moment.
-
-```bash
-docker pull valory/open-autonomy-user:latest
-docker container run -it valory/open-autonomy-user:latest
-```
-
-## This repository contains:
-
-- A directory, `packages`, which acts as the local registry
-
-- Pre-filled in third-party core packages
-
-- Basic example of a simple skill, a chained skill, an agent and a service
-
-- .env sample file with Python path updated to include packages directory
 
 ## How to use
 
@@ -41,7 +34,7 @@ docker container run -it valory/open-autonomy-user:latest
     autonomy packages sync --update-packages
     ```
 
-2. Prepare an `ethereum_private_key.txt` (for agents) file and `keys.json` (for services) files containing wallet address and/or the private key for each of the agents. You can generate a new key by running `autonomy generate-key ethereum`. This is how those files hsould look like:
+2. Prepare an `ethereum_private_key.txt` (for agents) file and `keys.json` (for services) files containing wallet address and/or the private key for each of the agents. You can generate a new key by running `autonomy generate-key ethereum`. This is how those files should look like:
 
     ethereum_private_key.txt (check that there are no newlines at the end)
 
@@ -66,13 +59,13 @@ docker container run -it valory/open-autonomy-user:latest
 
     ```cp sample.env .env```
 
-5. Fill in the required environment variables in .env. You'll need a Ethereum RPC. `ALL_PARTICIPANTS` needs to contain your agent's public address.
+5. Fill in the required environment variables in .env. You'll need a Ethereum RPC. `ALL_PARTICIPANTS` needs to contain your agent's public address. You will need to fill in each API key necessary in the .env file
 
 
 6. Test the agent. Make sure to add api keys in api_keys_json param in the aea-config.yaml file to run the agent successfully. Also, make sure there is only one agent address in .env all_participants and aea-config.yaml all_participants
 
     ```bash
-    bash run_agent.py
+    ./run_agent.py
     ```
 
     and in other terminal run Tendermint:
@@ -84,12 +77,18 @@ docker container run -it valory/open-autonomy-user:latest
 7. Test the service
 
     ```bash
-    bash run_service.py
+    ./run_service.py
     ```
 
-8. Get developing...
 
-## Useful commands:
+## Future Improvements
 
-Check out the `Makefile` for useful commands, e.g. `make formatters`, `make generators`, `make code-checks`, as well
-as `make common-checks-1`. To run tests use the `autonomy test` command. Run `autonomy test --help` for help about its usage.
+- Add more API's to get more up to date data
+- Refine prompts for better accuracy
+- Fine tune a custom GPT model with more data
+
+## Notes
+
+- This MVP should be run as a service with 2 agents.
+- Make sure the 2 agents addresses are in the .env `ALL_PARTICIPANTS` and the `all_participants` in the aea_config.yaml
+- Need API keys for Alpaca, Polygon, and ChatGPT API's
