@@ -1,6 +1,6 @@
 # Alprina
 
-A multi-agent system that generates a financial report and weekly price prediction (per agent) for Tesla (TSLA) stock:
+A multi-agent system that generates a financial report and weekly price prediction (per agent) for Tesla (TSLA) stock
 
 ## Example
 
