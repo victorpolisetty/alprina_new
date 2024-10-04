@@ -1,6 +1,14 @@
 # Alprina
 
-A multi-agent system that generates a financial report and weekly price prediction (per agent) for Tesla (TSLA) stock
+A multi-agent system that generates a financial report and weekly price prediction (per agent) for Tesla (TSLA) stock.
+
+## Why is this useful?
+
+Banks and hedgefunds spend millions hiring hundreds of analysts the make stock price predictions. Using AI agents, we can automate this process and do a much better job. It is impossible for one human to sift through as much data as an AI powered agent can. Imagine hundreds of these agents all searching for different trends to predict prices and supporting these with evidence. This could revolutionize the financial market industry.
+
+Morningstar provides a great visual example of how analyst price predictions currently are, and serve as a guide to how we could make this process more autonomous and efficient. See below.
+
+<img width="781" alt="Screenshot 2024-10-04 at 3 46 53 PM" src="https://github.com/user-attachments/assets/209c0dbd-6823-409d-af0a-83e9d4076286">
 
 ## Example
 
@@ -12,6 +20,8 @@ Agent 2 has persona "analyze social media sentiment" and gives it's price financ
 - Pulls from Alpaca API to get up-to-date information about Tesla (TSLA) stock
 - Pulls from Polygon API to get up-to-date social media sentiment about Tesla (TSLA) stock
 - Utilizes ChatGPT and data fed in from given APIs to create a financial report and predict what the stock price of Tesla (TSLA) will be at the end of the current week
+
+<img width="818" alt="Screenshot 2024-10-04 at 3 42 05 PM" src="https://github.com/user-attachments/assets/3be10c94-6c1f-49dc-baa0-d611abe15c5c">
 
 ## System requirements
 
