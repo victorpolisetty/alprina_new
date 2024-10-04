@@ -21,6 +21,20 @@ Agent 2 has persona "analyze social media sentiment" and gives it's price financ
 - Pulls from Polygon API to get up-to-date social media sentiment about Tesla (TSLA) stock
 - Utilizes ChatGPT and data fed in from given APIs to create a financial report and predict what the stock price of Tesla (TSLA) will be at the end of the current week
 
+## Detailed Breakdown
+
+RegistrationRound -> Register agent(s)
+
+CollectRandomnessRound -> Randomly select value to randomize agent keeper
+
+SelectKeeperRound -> Select agent to keep based on random value collected by CollectRandomnessRound
+
+CollectAlpacaHistoricalDataRound -> Collect weekly stock price data from X months previous to current to get LLM up to date with current stock price movements
+
+CollectPolygonSentimentAnalysisRound -> Collect news articles and sentiment about these articles to allow the LLM to get up to date information on the publics perception of the stock
+
+PromptLlmRound -> Using the information from CollectAlpacaHistoricalDataRound and CollectPolygonSentimentAnalysisRound, use RAG to feed in the new info from these API's to the prompt and have each agent have it's own "persona". These agents should give a price prediction and support it based on it's person. Ex) "The price of TSLA should be X, because based on historical data the price of TSLA in September always goes up 5-10%"
+
 <img width="818" alt="Screenshot 2024-10-04 at 3 42 05 PM" src="https://github.com/user-attachments/assets/3be10c94-6c1f-49dc-baa0-d611abe15c5c">
 
 ## System requirements
